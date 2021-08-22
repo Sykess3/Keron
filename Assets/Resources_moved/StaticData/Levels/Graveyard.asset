@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2494b4a5d79d44e087f301467a5a29a9, type: 3}
+  m_Name: Graveyard
+  m_EditorClassIdentifier: 
+  SceneKey: Main
+  NextSceneKey: Dungeon
+  Spawners:
+  - MonsterTypeId: 10
+    UniqueId: Main_9c23a7bc-4b27-453b-991b-c33ad84066d3
+    Position: {x: 0, y: 0, z: -2.94}
+  - MonsterTypeId: 0
+    UniqueId: Main_7ac6f303-adbe-45a8-a1d4-809329cafc0d
+    Position: {x: 0.0256176, y: -0.02, z: 4.1}
+  - MonsterTypeId: 0
+    UniqueId: Main_7ac6f303-adbe-45a8-a1d4-809329cafc0d
+    Position: {x: 0.0256176, y: 0.0000023841858, z: 4.049898}
+  - MonsterTypeId: 10
+    UniqueId: Main_7b9982e3-7124-4403-b71a-ae8094e5622d
+    Position: {x: 7.16, y: 0, z: 1.56}
+  - MonsterTypeId: 0
+    UniqueId: Main_e6586ed2-4ee8-4b5f-8cab-c06f50b0aa43
+    Position: {x: 7.16, y: 0, z: -2.94}
+  - MonsterTypeId: 0
+    UniqueId: Main_7ac6f303-adbe-45a8-a1d4-809329cafc0d
+    Position: {x: 0.0256176, y: 0.0000023841858, z: 4.049898}
+  - MonsterTypeId: 0
+    UniqueId: Main_a1c0f48f-2f3b-4c2f-bb82-ef0a1125a823
+    Position: {x: 12.41, y: 0, z: 5.21}
+  - MonsterTypeId: 0
+    UniqueId: Main_9faeef63-9398-4906-b0d7-9592b19efda2
+    Position: {x: 0, y: 0, z: 0}
+  InitialPoint: {x: -7.15, y: 0.018785477, z: -8.34}
+  LevelTransferTrigger:
+    Position: {x: 6.28, y: 0.5, z: 3.58}
+    ColliderSize: {x: 2, y: 0.5, z: 2}
+  SaveTrigger:
+    Position: {x: 8.222, y: 0.62, z: 1.58}
+    ColliderSize: {x: 2, y: 0.5, z: 2}

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Lich
+  m_EditorClassIdentifier: 
+  m_GroupName: Lich
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 1c730c8cefa024f48a22deb18650ab37
+  m_SerializeEntries:
+  - m_GUID: 45fe229d67c8ce6468e0c9e98da26edb
+    m_Address: Animations
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: 45fe229d67c8ce6468e0c9e98da26edb, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 45fe229d67c8ce6468e0c9e98da26edb, type: 3}
+  - m_GUID: a6d05f360d27a83438eec066dd762709
+    m_Address: Materials
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: a6d05f360d27a83438eec066dd762709, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: a6d05f360d27a83438eec066dd762709, type: 3}
+  - m_GUID: 043f9568e2d3fe449b7c4fc9518c922c
+    m_Address: Meshes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: 043f9568e2d3fe449b7c4fc9518c922c, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 043f9568e2d3fe449b7c4fc9518c922c, type: 3}
+  - m_GUID: 7870b55336a8d1e4ba7ed783bb508e06
+    m_Address: Textures
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: 7870b55336a8d1e4ba7ed783bb508e06, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 7870b55336a8d1e4ba7ed783bb508e06, type: 3}
+  - m_GUID: 3eddbe7d5ec8c5745a316f1992a1446d
+    m_Address: blank
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 3eddbe7d5ec8c5745a316f1992a1446d, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 3eddbe7d5ec8c5745a316f1992a1446d, type: 3}
+  - m_GUID: 7867af58a6ec48846ae807eb4022fbaa
+    m_Address: DeathFX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+    m_TargetAsset: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+  - m_GUID: 2f6fd1af64f902a46af48ba4146bbba1
+    m_Address: Lich
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 4123221918027798351, guid: 2f6fd1af64f902a46af48ba4146bbba1, type: 3}
+    m_TargetAsset: {fileID: 4123221918027798351, guid: 2f6fd1af64f902a46af48ba4146bbba1, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d8c330fe8202eac40a0c57f1dc3f9409, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ade7233879f29b645aaa818d6a4bcd1a, type: 2}
+    - {fileID: 11400000, guid: fd3574cf063d599438187da6321d99a6, type: 2}

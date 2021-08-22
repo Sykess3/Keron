@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SceneAssets
+  m_EditorClassIdentifier: 
+  m_GroupName: SceneAssets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 735b62c0ae68d7f4eb416c0a66d86f6c
+  m_SerializeEntries:
+  - m_GUID: b1c32c64982ae664a8697e040b354e8f
+    m_Address: SaveTrigger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 8479794315060867682, guid: b1c32c64982ae664a8697e040b354e8f, type: 3}
+    m_TargetAsset: {fileID: 8479794315060867682, guid: b1c32c64982ae664a8697e040b354e8f, type: 3}
+  - m_GUID: d7af923e4ea024c4c92a2ac0e43177d9
+    m_Address: InitialPoint
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7692669037585122454, guid: d7af923e4ea024c4c92a2ac0e43177d9, type: 3}
+    m_TargetAsset: {fileID: 7692669037585122454, guid: d7af923e4ea024c4c92a2ac0e43177d9, type: 3}
+  - m_GUID: 0988f625ad0f63b4c9e79438300b0dfa
+    m_Address: LevelTransferTrigger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 5566373531649098240, guid: 0988f625ad0f63b4c9e79438300b0dfa, type: 3}
+    m_TargetAsset: {fileID: 5566373531649098240, guid: 0988f625ad0f63b4c9e79438300b0dfa, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d8c330fe8202eac40a0c57f1dc3f9409, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 17fb5edb376ac5840b33b7a8c1de36ad, type: 2}
+    - {fileID: 11400000, guid: b2f168be34e203846a40091d1d6f1de6, type: 2}

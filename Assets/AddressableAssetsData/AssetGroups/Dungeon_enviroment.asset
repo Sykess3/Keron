@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Dungeon_enviroment
+  m_EditorClassIdentifier: 
+  m_GroupName: Dungeon_enviroment
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 6221c5f4c144f194e8c1ef8808a10f95
+  m_SerializeEntries:
+  - m_GUID: 7b7d6044277d1834cb6113d564d31142
+    m_Address: raw
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: 7b7d6044277d1834cb6113d564d31142, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 7b7d6044277d1834cb6113d564d31142, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d8c330fe8202eac40a0c57f1dc3f9409, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: cd5e75d564bffa34fb2010ed78c92f21, type: 2}
+    - {fileID: 11400000, guid: ae59242afaf252a4eafba96533fc8902, type: 2}

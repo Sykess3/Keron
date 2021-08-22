@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Hud
+  m_EditorClassIdentifier: 
+  m_GroupName: Hud
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 47fa51da941c49c4ba745269decc7233
+  m_SerializeEntries:
+  - m_GUID: c9b9d789507398747bb682b6906ee6ea
+    m_Address: Prefabs
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: c9b9d789507398747bb682b6906ee6ea, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: c9b9d789507398747bb682b6906ee6ea, type: 3}
+  - m_GUID: d029b29633c6f0e45af0f60af4e48596
+    m_Address: Sprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: d029b29633c6f0e45af0f60af4e48596, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: d029b29633c6f0e45af0f60af4e48596, type: 3}
+  - m_GUID: e637c55c985700342ad2e704e7a01394
+    m_Address: Hud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 6817394654584636326, guid: e637c55c985700342ad2e704e7a01394, type: 3}
+    m_TargetAsset: {fileID: 6817394654584636326, guid: e637c55c985700342ad2e704e7a01394, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d8c330fe8202eac40a0c57f1dc3f9409, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ec4fad9e2e7cc53489f79d05f0a55752, type: 2}
+    - {fileID: 11400000, guid: c15c69dbc7768f742a524a33c9ee3f00, type: 2}

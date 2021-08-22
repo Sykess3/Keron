@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f5d1e6c1fc1cb4f8aadd7fef0622b0, type: 3}
+  m_Name: Golem
+  m_EditorClassIdentifier: 
+  monsterTypeId: 10
+  HP: 5
+  Speed: 2
+  Attack:
+    CleavageAttack: 1
+    AttackCooldown: 5
+    EffectiveDistance: 0.602
+    Damage: 30
+  Loot:
+    MaxValue: 10
+    MinValue: 4
+  PrefabReference:
+    m_AssetGUID: 5194fe6753a4fa64dae7791656dcc7fd
+    m_SubObjectName: 
+    m_SubObjectType: 

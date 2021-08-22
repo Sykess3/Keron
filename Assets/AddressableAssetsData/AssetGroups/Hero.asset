@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Hero
+  m_EditorClassIdentifier: 
+  m_GroupName: Hero
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 5124e44ba28d3e545aeec54ead09ba80
+  m_SerializeEntries:
+  - m_GUID: 446b67edb2cc0c640903adc7b69660a8
+    m_Address: Animations
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: 446b67edb2cc0c640903adc7b69660a8, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 446b67edb2cc0c640903adc7b69660a8, type: 3}
+  - m_GUID: fb4bd0667fd4df54098e5bdc90bb8bc1
+    m_Address: AnimControllers
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: fb4bd0667fd4df54098e5bdc90bb8bc1, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: fb4bd0667fd4df54098e5bdc90bb8bc1, type: 3}
+  - m_GUID: d5d32c49e9e2b8641913f92c21fdeae5
+    m_Address: Materials
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: d5d32c49e9e2b8641913f92c21fdeae5, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: d5d32c49e9e2b8641913f92c21fdeae5, type: 3}
+  - m_GUID: b00a0b059b3307141b48c0a0b5defa26
+    m_Address: Meshes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: b00a0b059b3307141b48c0a0b5defa26, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: b00a0b059b3307141b48c0a0b5defa26, type: 3}
+  - m_GUID: 1ebc56f909d7844459c044fc161958d3
+    m_Address: Textures
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: 1ebc56f909d7844459c044fc161958d3, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 1ebc56f909d7844459c044fc161958d3, type: 3}
+  - m_GUID: fe691d08050018a4b9669e93dfc6295a
+    m_Address: Camera
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 1269585577436207702, guid: fe691d08050018a4b9669e93dfc6295a, type: 3}
+    m_TargetAsset: {fileID: 1269585577436207702, guid: fe691d08050018a4b9669e93dfc6295a, type: 3}
+  - m_GUID: 2a474af3f4c27be4e9bdce39cfe4315d
+    m_Address: DeathFX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 100006, guid: 2a474af3f4c27be4e9bdce39cfe4315d, type: 3}
+    m_TargetAsset: {fileID: 100006, guid: 2a474af3f4c27be4e9bdce39cfe4315d, type: 3}
+  - m_GUID: 181862a89f60d7a459002f9870860ad4
+    m_Address: hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 176288, guid: 181862a89f60d7a459002f9870860ad4, type: 3}
+    m_TargetAsset: {fileID: 176288, guid: 181862a89f60d7a459002f9870860ad4, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d8c330fe8202eac40a0c57f1dc3f9409, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: a4131a6502ceba24e87067f195dbe6d8, type: 2}
+    - {fileID: 11400000, guid: 76a831416841dd149a2e341a2fa03cb4, type: 2}
