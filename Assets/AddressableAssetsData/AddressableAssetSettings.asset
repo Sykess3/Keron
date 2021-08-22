@@ -84,6 +84,8 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - levels_static_data
+    - monsters_static_data
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 4e14350a3ec4f2c4aa9320b54e26d11c, type: 2}

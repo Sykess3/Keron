@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.Logic;
@@ -14,11 +15,19 @@ namespace CodeBase.Infrastructure.GameStates
     {
         private readonly Dictionary<Type, IExitableGameState> _states;
         private IExitableGameState _currentState;
-        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, AllServices services)
+        public GameStateMachine(SceneLoader sceneLoader, InitialSceneLoader initialSceneLoader, LoadingCurtain loadingCurtain, AllServices services)
         {
             _states = new Dictionary<Type, IExitableGameState>()
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
+                [typeof(BootstrapState)] = new BootstrapState(
+                    this,
+                    initialSceneLoader,
+                    services
+                    ),
+                [typeof(StaticDataLoadGameState)] = new StaticDataLoadGameState(
+                    this, 
+                    services.Single<IStaticDataService>()
+                    ), 
                 [typeof(LoadLevelState)] = new LoadLevelState(
                     this,
                     services.Single<IGameFactory>(),

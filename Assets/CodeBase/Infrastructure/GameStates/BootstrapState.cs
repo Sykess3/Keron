@@ -20,35 +20,35 @@ namespace CodeBase.Infrastructure.GameStates
     {
         private const string Initial = "Initial";
         private readonly GameStateMachine _stateMachine;
-        private readonly SceneLoader _sceneLoader;
+        private readonly InitialSceneLoader _initialSceneLoader;
         private readonly AllServices _services;
 
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services)
+        public BootstrapState(GameStateMachine stateMachine, InitialSceneLoader initialSceneLoader, AllServices services)
         {
             _stateMachine = stateMachine;
-            _sceneLoader = sceneLoader;
+            _initialSceneLoader = initialSceneLoader;
             _services = services;
-
+            
             RegisterServices();
         }
 
         public void Enter()
         {
-            LoadInitialScene();
+            _initialSceneLoader.Load(onLoaded: EnterStaticDataLoad);
         }
 
         public void Exit()
         {
         }
 
-        private void EnterLoadProgress() =>
-            _stateMachine.Enter<LoadProgressState>();
+        private void EnterStaticDataLoad() =>
+            _stateMachine.Enter<StaticDataLoadGameState>();
 
-        private async Task RegisterServices()
+        private void RegisterServices()
         {
             IGameStateMachine gameStateMachine = RegisterGameStateMachine();
             IAssets assets = RegisterAssets();
-            IStaticDataService staticData = await RegisterStaticData(assets);
+            IStaticDataService staticData =  RegisterStatic(assets);
             IRandomizer randomizer = RegisterRandomizer();
             IPersistentProgressService persistentProgress = RegisterPersistentProgress();
             IAdsService adsService = RegisterAdsService();
@@ -71,6 +71,7 @@ namespace CodeBase.Infrastructure.GameStates
             saveLoadService.GameFactory = gameFactory;
 
             _services.RegisterSingle<IInputService>(new SimpleInputService());
+            
         }
 
         private ISaveLoadService RegisterSaveLoad(IPersistentProgressService persistentProgress)
@@ -149,28 +150,11 @@ namespace CodeBase.Infrastructure.GameStates
             return assets;
         }
 
-        private async Task<IStaticDataService> RegisterStaticData(IAssets assets)
+        private IStaticDataService RegisterStatic(IAssets assets)
         {
             StaticDataService staticDataService = new StaticDataService(assets);
             _services.RegisterSingle<IStaticDataService>(staticDataService);
-
-            await staticDataService.Load();
             return staticDataService;
-        }
-
-        private IEnumerator LoadInitialScene()
-        {
-            if (SceneManager.GetActiveScene().name == Initial)
-            {
-                EnterLoadProgress();
-                yield break;
-            }
-
-            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(Initial);
-
-            while (!waitNextScene.isDone)
-                yield return null;
-            EnterLoadProgress();
         }
     }
 }

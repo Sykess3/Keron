@@ -100,7 +100,7 @@ namespace CodeBase.Infrastructure.Factory
         {
             MonsterStaticData monsterData = _staticData.ForMonster(monsterTypeId);
 
-            var prefab = await _assets.Load<GameObject>(monsterData.PrefabReference);
+            var prefab = await _assets.LoadByName<GameObject>(monsterData.PrefabReference);
             
             GameObject monster = Object.Instantiate(prefab, parent.position, Quaternion.identity, parent);
 
@@ -109,14 +109,14 @@ namespace CodeBase.Infrastructure.Factory
 
         public async Task<LootPiece> CreateLoot(Vector3 at)
         {
-            GameObject prefab = await _assets.Load<GameObject>(AssetAddress.Loot);
+            GameObject prefab = await _assets.LoadByName<GameObject>(AssetAddress.Loot);
             GameObject loot = InstantiateRegistered(prefab, at);
             return loot.GetComponent<LootPiece>();
         }
 
         public async Task<SpawnPoint> CreateSpawner(Vector3 at, string uniqueId, MonsterTypeId monsterTypeId)
         {
-            GameObject prefab = await _assets.Load<GameObject>(AssetAddress.SpawnPoint);
+            GameObject prefab = await _assets.LoadByName<GameObject>(AssetAddress.SpawnPoint);
             SpawnPoint spawner = InstantiateRegistered(prefab, at)
                 .GetComponent<SpawnPoint>();
             
@@ -126,8 +126,8 @@ namespace CodeBase.Infrastructure.Factory
 
         public async void WarmUp()
         {
-            await _assets.Load<GameObject>(AssetAddress.Loot);
-            await _assets.Load<GameObject>(AssetAddress.SpawnPoint);
+            await _assets.LoadByName<GameObject>(AssetAddress.Loot);
+            await _assets.LoadByName<GameObject>(AssetAddress.SpawnPoint);
         }
 
         public void CleanUp()

@@ -20,13 +20,15 @@ MonoBehaviour:
   - m_GUID: b0fd2a9f8dc0dd74f83b3eedb8807387
     m_Address: LevelsStaticData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - levels_static_data
     m_MainAsset: {fileID: 102900000, guid: b0fd2a9f8dc0dd74f83b3eedb8807387, type: 3}
     m_TargetAsset: {fileID: 102900000, guid: b0fd2a9f8dc0dd74f83b3eedb8807387, type: 3}
   - m_GUID: c3aa1bb926da1804aa340c50a19eab58
     m_Address: MonstersStaticData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - monsters_static_data
     m_MainAsset: {fileID: 102900000, guid: c3aa1bb926da1804aa340c50a19eab58, type: 3}
     m_TargetAsset: {fileID: 102900000, guid: c3aa1bb926da1804aa340c50a19eab58, type: 3}
   - m_GUID: b92854735b0a41b40a7d1f20e788cc1c

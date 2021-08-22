@@ -15,10 +15,8 @@ namespace CodeBase.Services.StaticData
         private Dictionary<WindowId, WindowConfig> _windows;
         private readonly IAssets _assets;
 
-        public StaticDataService(IAssets assets)
-        {
+        public StaticDataService(IAssets assets) => 
             _assets = assets;
-        }
 
         public async Task Load() => 
             await Task.WhenAll(LoadMonsterStaticDataAsync(), LoadLevelStaticDataAsync(), LoadWindowsStaticData());
@@ -40,7 +38,7 @@ namespace CodeBase.Services.StaticData
 
         private async Task LoadWindowsStaticData()
         {
-            WindowsStaticData windowsStaticData = await _assets.Load<WindowsStaticData>(AssetAddress.WindowsStaticData);
+            WindowsStaticData windowsStaticData = await _assets.LoadByName<WindowsStaticData>(AssetAddress.WindowsStaticData);
             _windows = windowsStaticData
                 .Configs
                 .ToDictionary(x => x.WindowId);
@@ -48,7 +46,7 @@ namespace CodeBase.Services.StaticData
 
         private async Task LoadLevelStaticDataAsync()
         {
-            IList<LevelStaticData> levelsStaticData = await _assets.LoadFromDirectory<LevelStaticData>(AssetAddress.LevelsStaticData);
+            IList<LevelStaticData> levelsStaticData = await _assets.LoadByLabel<LevelStaticData>(AssetAddress.LevelsStaticData);
             _levels = levelsStaticData
                 .ToDictionary(x => x.SceneKey);
         }
@@ -57,7 +55,7 @@ namespace CodeBase.Services.StaticData
         private async Task LoadMonsterStaticDataAsync()
         {
             IList<MonsterStaticData> monstersStaticData =
-                await _assets.LoadFromDirectory<MonsterStaticData>(AssetAddress.MonstersStaticData);
+                await _assets.LoadByLabel<MonsterStaticData>(AssetAddress.MonstersStaticData);
             _monsters = monstersStaticData
                 .ToDictionary(x => x.monsterTypeId);
         }

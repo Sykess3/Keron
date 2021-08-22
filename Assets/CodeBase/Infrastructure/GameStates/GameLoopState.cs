@@ -2,9 +2,9 @@
 {
     public class GameLoopState : IGameState
     {
-        private readonly GameStateMachine _stateMachine;
+        private readonly IGameStateMachine _stateMachine;
 
-        public GameLoopState(GameStateMachine gameStateMachine)
+        public GameLoopState(IGameStateMachine gameStateMachine)
         {
             _stateMachine = gameStateMachine;
         }

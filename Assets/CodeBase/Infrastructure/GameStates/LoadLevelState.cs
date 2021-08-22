@@ -48,7 +48,7 @@ namespace CodeBase.Infrastructure.GameStates
 
         public void Enter(string payLoaded)
         {
-            _sceneLoader.Load(name: payLoaded, OnLoaded);
+            _sceneLoader.Load(name: payLoaded, LoadSceneMode.Single, OnLoaded);
             _gameFactory.CleanUp();
             _gameFactory.WarmUp();
             _loadingCurtain.Show();

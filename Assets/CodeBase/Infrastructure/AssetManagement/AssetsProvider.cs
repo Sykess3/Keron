@@ -17,7 +17,7 @@ namespace CodeBase.Infrastructure.AssetManagement
         public void Initialize() => 
             Addressables.InitializeAsync();
 
-        public async Task<T> Load<T>(AssetReferenceGameObject assetReference) where T : class
+        public async Task<T> LoadByName<T>(AssetReferenceGameObject assetReference) where T : class
         {
             if (_completedCache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandle))
                 return completedHandle.Result as T;
@@ -27,7 +27,7 @@ namespace CodeBase.Infrastructure.AssetManagement
                 assetReference.AssetGUID);
         }
 
-        public async Task<T> Load<T>(string assetAddress) where T : class
+        public async Task<T> LoadByName<T>(string assetAddress) where T : class
         {
             if (_completedCache.TryGetValue(assetAddress, out AsyncOperationHandle completedHandle))
                 return completedHandle.Result as T;
@@ -37,7 +37,7 @@ namespace CodeBase.Infrastructure.AssetManagement
                 assetAddress);
         }
 
-        public async Task<IList<T>> LoadFromDirectory<T>(string assetAddress) where T : class
+        public async Task<IList<T>> LoadByLabel<T>(string assetAddress) where T : class
         {
              if (_completedCache.TryGetValue(assetAddress, out AsyncOperationHandle completedHandle))
                  return completedHandle.Result as IList<T>;

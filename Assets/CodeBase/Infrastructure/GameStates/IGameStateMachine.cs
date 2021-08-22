@@ -1,4 +1,5 @@
-﻿using CodeBase.Services;
+﻿using System.Threading.Tasks;
+using CodeBase.Services;
 
 namespace CodeBase.Infrastructure.GameStates
 {

@@ -6,11 +6,11 @@ namespace CodeBase.Infrastructure.GameStates
 {
     public class LoadProgressState : IGameState
     {
-        private readonly GameStateMachine _gameStateMachine;
+        private readonly IGameStateMachine _gameStateMachine;
         private readonly ISaveLoadService _saveLoadService;
         private readonly IPersistentProgressService _progressService;
 
-        public LoadProgressState(GameStateMachine gameStateMachine, 
+        public LoadProgressState(IGameStateMachine gameStateMachine, 
             IPersistentProgressService progressService, ISaveLoadService saveLoadService)
         {
             _gameStateMachine = gameStateMachine;
@@ -38,7 +38,7 @@ namespace CodeBase.Infrastructure.GameStates
 
         private PlayerProgress NewProgress()
         {
-            WorldData worldData = new WorldData(initialLevel: "Main");
+            WorldData worldData = new WorldData(initialLevel: "Graveyard");
             State heroState = new State(maxHP: 100f);
             Stats heroStats = new Stats(1f, 0.5f);
             PlayerProgress playerProgress = new PlayerProgress(worldData, heroState, heroStats);

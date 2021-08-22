@@ -18,13 +18,13 @@ MonoBehaviour:
   m_GUID: 5ded00d92959f3e419f9fc2c0679cef8
   m_SerializeEntries:
   - m_GUID: 50964482e804a6840ab24b1773144f13
-    m_Address: Dungeon
+    m_Address: Dungeon_
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 102900000, guid: 50964482e804a6840ab24b1773144f13, type: 3}
     m_TargetAsset: {fileID: 102900000, guid: 50964482e804a6840ab24b1773144f13, type: 3}
   - m_GUID: c186692045aa95f4eaa0e09a90500490
-    m_Address: Graveyard
+    m_Address: Graveyard_
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 102900000, guid: c186692045aa95f4eaa0e09a90500490, type: 3}
@@ -36,7 +36,7 @@ MonoBehaviour:
     m_MainAsset: {fileID: 102900000, guid: 3cc1a8f07966d1f4f8b8822b6c028a0f, type: 3}
     m_TargetAsset: {fileID: 102900000, guid: 3cc1a8f07966d1f4f8b8822b6c028a0f, type: 3}
   - m_GUID: 9c55f58a0ccd23741857d605e6a7955e
-    m_Address: TEST
+    m_Address: TEST_
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 102900000, guid: 9c55f58a0ccd23741857d605e6a7955e, type: 3}
@@ -57,20 +57,20 @@ MonoBehaviour:
     m_Address: Graveyard
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: e81eefaccc62302499e82a6de9551e11, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: e81eefaccc62302499e82a6de9551e11, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: f3c9c81e75e1179499a5630b8e2275c5
     m_Address: GraveyardSettings
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 4890085278179872738, guid: f3c9c81e75e1179499a5630b8e2275c5, type: 2}
-    m_TargetAsset: {fileID: 4890085278179872738, guid: f3c9c81e75e1179499a5630b8e2275c5, type: 2}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 949b933a1f5ebc74c86fb6038b05fbe9
     m_Address: TEST
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: 949b933a1f5ebc74c86fb6038b05fbe9, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: 949b933a1f5ebc74c86fb6038b05fbe9, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d8c330fe8202eac40a0c57f1dc3f9409, type: 2}
   m_SchemaSet:
