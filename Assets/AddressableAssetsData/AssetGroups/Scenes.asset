@@ -21,20 +21,8 @@ MonoBehaviour:
     m_Address: Dungeon_
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: 50964482e804a6840ab24b1773144f13, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: 50964482e804a6840ab24b1773144f13, type: 3}
-  - m_GUID: c186692045aa95f4eaa0e09a90500490
-    m_Address: Graveyard_
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: c186692045aa95f4eaa0e09a90500490, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: c186692045aa95f4eaa0e09a90500490, type: 3}
-  - m_GUID: 3cc1a8f07966d1f4f8b8822b6c028a0f
-    m_Address: SceneAssets
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: 3cc1a8f07966d1f4f8b8822b6c028a0f, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: 3cc1a8f07966d1f4f8b8822b6c028a0f, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 9c55f58a0ccd23741857d605e6a7955e
     m_Address: TEST_
     m_ReadOnly: 0
@@ -45,28 +33,28 @@ MonoBehaviour:
     m_Address: Dungeon
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: 114d9f5ea8ed2eb48a0c7b4f6b7655a0, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: 114d9f5ea8ed2eb48a0c7b4f6b7655a0, type: 3}
-  - m_GUID: 24e785ae901a54e469db38c1eee1f82f
-    m_Address: DungeonSettings
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 4890085278179872738, guid: 24e785ae901a54e469db38c1eee1f82f, type: 2}
-    m_TargetAsset: {fileID: 4890085278179872738, guid: 24e785ae901a54e469db38c1eee1f82f, type: 2}
-  - m_GUID: e81eefaccc62302499e82a6de9551e11
-    m_Address: Graveyard
-    m_ReadOnly: 0
-    m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: f3c9c81e75e1179499a5630b8e2275c5
-    m_Address: GraveyardSettings
+  - m_GUID: 24e785ae901a54e469db38c1eee1f82f
+    m_Address: DungeonSettings
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: 949b933a1f5ebc74c86fb6038b05fbe9
     m_Address: TEST
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 81cdc51a8718dea428d18c2049a89e18
+    m_Address: Graveyard
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c186692045aa95f4eaa0e09a90500490
+    m_Address: Graveyard
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

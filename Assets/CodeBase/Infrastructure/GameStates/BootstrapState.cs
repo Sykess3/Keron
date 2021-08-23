@@ -18,24 +18,21 @@ namespace CodeBase.Infrastructure.GameStates
 {
     public class BootstrapState : IGameState
     {
-        private const string Initial = "Initial";
         private readonly GameStateMachine _stateMachine;
-        private readonly InitialSceneLoader _initialSceneLoader;
+        private readonly SceneLoader _sceneLoader;
         private readonly AllServices _services;
 
-        public BootstrapState(GameStateMachine stateMachine, InitialSceneLoader initialSceneLoader, AllServices services)
+        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services)
         {
             _stateMachine = stateMachine;
-            _initialSceneLoader = initialSceneLoader;
+            _sceneLoader = sceneLoader;
             _services = services;
             
             RegisterServices();
         }
 
-        public void Enter()
-        {
-            _initialSceneLoader.Load(onLoaded: EnterStaticDataLoad);
-        }
+        public void Enter() => 
+            _sceneLoader.LoadInitial(EnterStaticDataLoad);
 
         public void Exit()
         {
@@ -76,8 +73,10 @@ namespace CodeBase.Infrastructure.GameStates
 
         private ISaveLoadService RegisterSaveLoad(IPersistentProgressService persistentProgress)
         {
-            _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(persistentProgress));
-            return _services.Single<ISaveLoadService>();
+            SaveLoadService saveLoadService = new SaveLoadService(persistentProgress);
+            _services.RegisterSingle<ISaveLoadService>(saveLoadService);
+            ISaveLoadService registerSaveLoad = _services.Single<ISaveLoadService>();
+            return registerSaveLoad;
         }
 
         private IGameStateMachine RegisterGameStateMachine()

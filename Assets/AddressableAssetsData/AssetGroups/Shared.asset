@@ -17,12 +17,36 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: ba0b9000357351140ac237909c4992b4
   m_SerializeEntries:
-  - m_GUID: f54d1bd14bd3ca042bd867b519fee8cc
-    m_Address: TextMesh Pro
+  - m_GUID: 7e383c99b59e6594ead8e24e53b70bbb
+    m_Address: EnemySpawner
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: f54d1bd14bd3ca042bd867b519fee8cc, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: f54d1bd14bd3ca042bd867b519fee8cc, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: aa22fd60b14bebd4794621ef85bad465
+    m_Address: JMO Assets
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: aa22fd60b14bebd4794621ef85bad465, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: aa22fd60b14bebd4794621ef85bad465, type: 3}
+  - m_GUID: 627f5379004b53545868e52dd3b87f1e
+    m_Address: Simple Fantasy GUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: 627f5379004b53545868e52dd3b87f1e, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 627f5379004b53545868e52dd3b87f1e, type: 3}
+  - m_GUID: 37ca4244afc61b3439e546ae5d0c8e7b
+    m_Address: GUI CARTOON
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: 37ca4244afc61b3439e546ae5d0c8e7b, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 37ca4244afc61b3439e546ae5d0c8e7b, type: 3}
+  - m_GUID: cb9298cbaeb6db14dbbc8cc1afe5d39a
+    m_Address: Free RPG Icons
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: cb9298cbaeb6db14dbbc8cc1afe5d39a, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: cb9298cbaeb6db14dbbc8cc1afe5d39a, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d8c330fe8202eac40a0c57f1dc3f9409, type: 2}
   m_SchemaSet:

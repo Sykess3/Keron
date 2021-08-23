@@ -15,34 +15,28 @@ MonoBehaviour:
   SceneKey: Graveyard
   NextSceneKey: Dungeon
   Spawners:
+  - MonsterTypeId: 0
+    UniqueId: Main_7ac6f303-adbe-45a8-a1d4-809329cafc0d
+    Position: {x: 2.86, y: 0, z: 0.75}
   - MonsterTypeId: 10
-    UniqueId: Main_9c23a7bc-4b27-453b-991b-c33ad84066d3
-    Position: {x: 0, y: 0, z: -2.94}
+    UniqueId: Main_7ac6f303-adbe-45a8-a1d4-809329cafc0d
+    Position: {x: 6.22, y: 0, z: 0}
   - MonsterTypeId: 0
     UniqueId: Main_7ac6f303-adbe-45a8-a1d4-809329cafc0d
-    Position: {x: 0.0256176, y: -0.02, z: 4.1}
+    Position: {x: -0.21, y: 0, z: 0}
   - MonsterTypeId: 0
     UniqueId: Main_7ac6f303-adbe-45a8-a1d4-809329cafc0d
-    Position: {x: 0.0256176, y: 0.0000023841858, z: 4.049898}
+    Position: {x: 5.85, y: 0, z: -2.55}
   - MonsterTypeId: 10
-    UniqueId: Main_7b9982e3-7124-4403-b71a-ae8094e5622d
-    Position: {x: 7.16, y: 0, z: 1.56}
-  - MonsterTypeId: 0
-    UniqueId: Main_e6586ed2-4ee8-4b5f-8cab-c06f50b0aa43
-    Position: {x: 7.16, y: 0, z: -2.94}
+    UniqueId: Main_7ac6f303-adbe-45a8-a1d4-809329cafc0d
+    Position: {x: 1.22, y: 0, z: -3.82}
   - MonsterTypeId: 0
     UniqueId: Main_7ac6f303-adbe-45a8-a1d4-809329cafc0d
-    Position: {x: 0.0256176, y: 0.0000023841858, z: 4.049898}
-  - MonsterTypeId: 0
-    UniqueId: Main_a1c0f48f-2f3b-4c2f-bb82-ef0a1125a823
-    Position: {x: 12.41, y: 0, z: 5.21}
-  - MonsterTypeId: 0
-    UniqueId: Main_9faeef63-9398-4906-b0d7-9592b19efda2
-    Position: {x: 0, y: 0, z: 0}
-  InitialPoint: {x: -7.15, y: 0.018785477, z: -8.34}
+    Position: {x: 0, y: 0, z: 1.48}
+  InitialPoint: {x: 13.8, y: 0.0000009536743, z: 2.39}
   LevelTransferTrigger:
-    Position: {x: 6.28, y: 0.5, z: 3.58}
-    ColliderSize: {x: 2, y: 0.5, z: 2}
+    Position: {x: -12.29, y: -0.0000009536743, z: -4.41}
+    ColliderSize: {x: 2, y: 1, z: 3}
   SaveTrigger:
-    Position: {x: 8.222, y: 0.62, z: 1.58}
+    Position: {x: 8.62, y: -0.0000009536743, z: 1.81}
     ColliderSize: {x: 2, y: 0.5, z: 2}

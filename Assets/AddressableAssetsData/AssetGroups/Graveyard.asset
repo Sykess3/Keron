@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Graveyard_enviroment
+  m_Name: Graveyard
   m_EditorClassIdentifier: 
-  m_GroupName: Graveyard_enviroment
+  m_GroupName: Graveyard
   m_Data:
     m_SerializedData: []
   m_GUID: 7f9312a1ff7cf2e489f4bf81351ddef0
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: d8fced3327c2f2c42850913c5f5a1b58
+    m_Address: Graveyard_enviroment
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: d8fced3327c2f2c42850913c5f5a1b58, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: d8fced3327c2f2c42850913c5f5a1b58, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d8c330fe8202eac40a0c57f1dc3f9409, type: 2}
   m_SchemaSet:

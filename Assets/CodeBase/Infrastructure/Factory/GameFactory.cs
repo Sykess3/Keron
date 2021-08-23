@@ -56,19 +56,20 @@ namespace CodeBase.Infrastructure.Factory
         {
             LevelStaticData levelData = _staticData.ForLevel(currentScene);
 
-            GameObject levelTransferTriggerObject = await _assets.Instantiate(AssetAddress.TransferLevelTrigger,
-                at: levelData.LevelTransferTrigger.Position);
+            GameObject transferTriggerPrefab = await _assets.LoadSingle<GameObject>(AssetAddress.TransferLevelTrigger);
+            GameObject transferTriggerObject = Object.Instantiate(transferTriggerPrefab, levelData.LevelTransferTrigger.Position, Quaternion.identity);
 
-            levelTransferTriggerObject.GetComponent<BoxCollider>().size = levelData.LevelTransferTrigger.ColliderSize;
+            transferTriggerObject.GetComponent<BoxCollider>().size = levelData.LevelTransferTrigger.ColliderSize;
 
-            levelTransferTriggerObject.GetComponent<LevelTransferTrigger>().Construct(_stateMachine, levelData.NextSceneKey);
+            transferTriggerObject.GetComponent<LevelTransferTrigger>().Construct(_stateMachine, levelData.NextSceneKey);
         }
 
         public async void CreateSaveTrigger(string currentScene)
         {
             LevelStaticData levelData = _staticData.ForLevel(currentScene);
 
-            GameObject saveTriggerObject = await _assets.Instantiate(AssetAddress.SaveTrigger, at: levelData.SaveTrigger.Position);
+            GameObject saveTriggerPrefab = await _assets.LoadSingle<GameObject>(AssetAddress.SaveTrigger);
+            GameObject saveTriggerObject = Object.Instantiate(saveTriggerPrefab, levelData.SaveTrigger.Position, Quaternion.identity);
 
             saveTriggerObject.GetComponent<BoxCollider>().size = levelData.SaveTrigger.ColliderSize;
             
@@ -100,7 +101,7 @@ namespace CodeBase.Infrastructure.Factory
         {
             MonsterStaticData monsterData = _staticData.ForMonster(monsterTypeId);
 
-            var prefab = await _assets.LoadByName<GameObject>(monsterData.PrefabReference);
+            var prefab = await _assets.LoadSingle<GameObject>(monsterData.PrefabReference);
             
             GameObject monster = Object.Instantiate(prefab, parent.position, Quaternion.identity, parent);
 
@@ -109,14 +110,14 @@ namespace CodeBase.Infrastructure.Factory
 
         public async Task<LootPiece> CreateLoot(Vector3 at)
         {
-            GameObject prefab = await _assets.LoadByName<GameObject>(AssetAddress.Loot);
+            GameObject prefab = await _assets.LoadSingle<GameObject>(AssetAddress.Loot);
             GameObject loot = InstantiateRegistered(prefab, at);
             return loot.GetComponent<LootPiece>();
         }
 
         public async Task<SpawnPoint> CreateSpawner(Vector3 at, string uniqueId, MonsterTypeId monsterTypeId)
         {
-            GameObject prefab = await _assets.LoadByName<GameObject>(AssetAddress.SpawnPoint);
+            GameObject prefab = await _assets.LoadSingle<GameObject>(AssetAddress.SpawnPoint);
             SpawnPoint spawner = InstantiateRegistered(prefab, at)
                 .GetComponent<SpawnPoint>();
             
@@ -126,8 +127,10 @@ namespace CodeBase.Infrastructure.Factory
 
         public async void WarmUp()
         {
-            await _assets.LoadByName<GameObject>(AssetAddress.Loot);
-            await _assets.LoadByName<GameObject>(AssetAddress.SpawnPoint);
+            await _assets.LoadSingle<GameObject>(AssetAddress.Loot);
+            await _assets.LoadSingle<GameObject>(AssetAddress.SpawnPoint);
+            await _assets.LoadSingleForEntireLiceCycle<GameObject>(AssetAddress.SaveTrigger);
+            await _assets.LoadSingleForEntireLiceCycle<GameObject>(AssetAddress.TransferLevelTrigger);
         }
 
         public void CleanUp()

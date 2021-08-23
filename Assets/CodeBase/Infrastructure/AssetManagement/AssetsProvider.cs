@@ -17,7 +17,7 @@ namespace CodeBase.Infrastructure.AssetManagement
         public void Initialize() => 
             Addressables.InitializeAsync();
 
-        public async Task<T> LoadByName<T>(AssetReferenceGameObject assetReference) where T : class
+        public async Task<T> LoadSingle<T>(AssetReferenceGameObject assetReference) where T : class
         {
             if (_completedCache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandle))
                 return completedHandle.Result as T;
@@ -27,24 +27,42 @@ namespace CodeBase.Infrastructure.AssetManagement
                 assetReference.AssetGUID);
         }
 
-        public async Task<T> LoadByName<T>(string assetAddress) where T : class
+        public async Task<T> LoadSingle<T>(string assetAddress) where T : class
         {
             if (_completedCache.TryGetValue(assetAddress, out AsyncOperationHandle completedHandle))
                 return completedHandle.Result as T;
 
+            AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(assetAddress);
             return await RunWitchCacheHandle(
-                Addressables.LoadAssetAsync<T>(assetAddress),
+                handle,
                 assetAddress);
         }
+        
+        public async Task<T> LoadSingleForEntireLiceCycle<T>(string assetAddress) where T : class
+        {
+            if (_completedCache.TryGetValue(assetAddress, out AsyncOperationHandle completedHandle))
+                return completedHandle.Result as T;
 
-        public async Task<IList<T>> LoadByLabel<T>(string assetAddress) where T : class
+            AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(assetAddress);
+            return await handle.Task;
+        }
+
+        public async Task<IList<T>> LoadCollection<T>(string assetAddress) where T : class
         {
              if (_completedCache.TryGetValue(assetAddress, out AsyncOperationHandle completedHandle))
                  return completedHandle.Result as IList<T>;
-             AsyncOperationHandle<IList<T>> asyncOperationHandle = Addressables.LoadAssetsAsync<T>(assetAddress, null);
+             AsyncOperationHandle<IList<T>> handle = Addressables.LoadAssetsAsync<T>(assetAddress, null);
              return await RunWitchCacheHandle(
-                 asyncOperationHandle,
+                 handle,
                  assetAddress);
+        }
+        public async Task<IList<T>> LoadCollectionForEntireLiceCycle<T>(string assetAddress) where T : class
+        {
+             if (_completedCache.TryGetValue(assetAddress, out AsyncOperationHandle completedHandle))
+                 return completedHandle.Result as IList<T>;
+             AsyncOperationHandle<IList<T>> handle = Addressables.LoadAssetsAsync<T>(assetAddress, null);
+
+             return await handle.Task;
         }
 
         public async Task<GameObject> Instantiate(string address, Vector3 at) => 

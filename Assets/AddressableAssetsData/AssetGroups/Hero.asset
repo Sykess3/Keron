@@ -21,14 +21,14 @@ MonoBehaviour:
     m_Address: Animations
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: 446b67edb2cc0c640903adc7b69660a8, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: 446b67edb2cc0c640903adc7b69660a8, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: fb4bd0667fd4df54098e5bdc90bb8bc1
     m_Address: AnimControllers
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: fb4bd0667fd4df54098e5bdc90bb8bc1, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: fb4bd0667fd4df54098e5bdc90bb8bc1, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: d5d32c49e9e2b8641913f92c21fdeae5
     m_Address: Materials
     m_ReadOnly: 0
@@ -45,22 +45,22 @@ MonoBehaviour:
     m_Address: Textures
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: 1ebc56f909d7844459c044fc161958d3, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: 1ebc56f909d7844459c044fc161958d3, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: fe691d08050018a4b9669e93dfc6295a
     m_Address: Camera
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 1269585577436207702, guid: fe691d08050018a4b9669e93dfc6295a, type: 3}
-    m_TargetAsset: {fileID: 1269585577436207702, guid: fe691d08050018a4b9669e93dfc6295a, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 2a474af3f4c27be4e9bdce39cfe4315d
     m_Address: DeathFX
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 100006, guid: 2a474af3f4c27be4e9bdce39cfe4315d, type: 3}
-    m_TargetAsset: {fileID: 100006, guid: 2a474af3f4c27be4e9bdce39cfe4315d, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 181862a89f60d7a459002f9870860ad4
-    m_Address: hero
+    m_Address: Hero
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 176288, guid: 181862a89f60d7a459002f9870860ad4, type: 3}

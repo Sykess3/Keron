@@ -38,7 +38,7 @@ namespace CodeBase.Services.StaticData
 
         private async Task LoadWindowsStaticData()
         {
-            WindowsStaticData windowsStaticData = await _assets.LoadByName<WindowsStaticData>(AssetAddress.WindowsStaticData);
+            WindowsStaticData windowsStaticData = await _assets.LoadSingleForEntireLiceCycle<WindowsStaticData>(AssetAddress.WindowsStaticData);
             _windows = windowsStaticData
                 .Configs
                 .ToDictionary(x => x.WindowId);
@@ -46,7 +46,7 @@ namespace CodeBase.Services.StaticData
 
         private async Task LoadLevelStaticDataAsync()
         {
-            IList<LevelStaticData> levelsStaticData = await _assets.LoadByLabel<LevelStaticData>(AssetAddress.LevelsStaticData);
+            IList<LevelStaticData> levelsStaticData = await _assets.LoadCollectionForEntireLiceCycle<LevelStaticData>(AssetAddress.LevelsStaticData);
             _levels = levelsStaticData
                 .ToDictionary(x => x.SceneKey);
         }
@@ -55,7 +55,7 @@ namespace CodeBase.Services.StaticData
         private async Task LoadMonsterStaticDataAsync()
         {
             IList<MonsterStaticData> monstersStaticData =
-                await _assets.LoadByLabel<MonsterStaticData>(AssetAddress.MonstersStaticData);
+                await _assets.LoadCollectionForEntireLiceCycle<MonsterStaticData>(AssetAddress.MonstersStaticData);
             _monsters = monstersStaticData
                 .ToDictionary(x => x.monsterTypeId);
         }

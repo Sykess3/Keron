@@ -15,13 +15,13 @@ namespace CodeBase.Infrastructure.GameStates
     {
         private readonly Dictionary<Type, IExitableGameState> _states;
         private IExitableGameState _currentState;
-        public GameStateMachine(SceneLoader sceneLoader, InitialSceneLoader initialSceneLoader, LoadingCurtain loadingCurtain, AllServices services)
+        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, AllServices services)
         {
             _states = new Dictionary<Type, IExitableGameState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(
                     this,
-                    initialSceneLoader,
+                    sceneLoader,
                     services
                     ),
                 [typeof(StaticDataLoadGameState)] = new StaticDataLoadGameState(

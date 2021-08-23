@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8883855937235038901}
   - component: {fileID: -6886605876689908469}
   m_Layer: 0
-  m_Name: LevelTransferTrigger
+  m_Name: marker_LevelTransferTrigger
   m_TagString: LevelTransferTrigger
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

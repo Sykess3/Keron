@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
@@ -12,15 +14,34 @@ namespace CodeBase.Infrastructure
     {
         private readonly ICoroutineRunner _coroutineRunner;
         private readonly List<AsyncOperationHandle<SceneInstance>> _previousScenesHandles = new List<AsyncOperationHandle<SceneInstance>>();
+        private const string Initial = "Initial";
 
-        public SceneLoader(ICoroutineRunner coroutineRunner) => 
+        public SceneLoader(ICoroutineRunner coroutineRunner)
+        {
             _coroutineRunner = coroutineRunner;
+        }
         
+        public async Task Load(string name, LoadSceneMode sceneMode, Action onLoaded = null) =>
+            await LoadScene(name, sceneMode, onLoaded);
+        
+        public void LoadInitial(Action onLoaded = null) =>
+            _coroutineRunner.StartCoroutine(LoadScene(Initial, onLoaded));
 
-        public void Load(string name, LoadSceneMode sceneMode, Action onLoaded = null) =>
-            _coroutineRunner.StartCoroutine(LoadScene(name, sceneMode, onLoaded));
+        private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
+        {
+            if (SceneManager.GetActiveScene().name == nextScene)
+            {
+                onLoaded?.Invoke();
+                yield break;
+            }
+            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
 
-        private IEnumerator LoadScene(string nextScene, LoadSceneMode sceneMode, Action onLoaded = null)
+            while (!waitNextScene.isDone)
+                yield return null;
+            onLoaded?.Invoke();
+        }
+
+        private async Task LoadScene(string nextScene, LoadSceneMode sceneMode, Action onLoaded = null)
         {
             AsyncOperationHandle<SceneInstance> waitNextScene =
                 (sceneMode == LoadSceneMode.Additive)
@@ -29,15 +50,12 @@ namespace CodeBase.Infrastructure
 
             CacheHandle(waitNextScene);
 
-            while (!waitNextScene.IsDone)
-                yield return null;
+            await waitNextScene.Task;
             onLoaded?.Invoke();
         }
 
-        private static AsyncOperationHandle<SceneInstance> LoadAdditive(string nextScene)
-        {
-            return Addressables.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
-        }
+        private static AsyncOperationHandle<SceneInstance> LoadAdditive(string nextScene) => 
+            Addressables.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
 
         private AsyncOperationHandle<SceneInstance> LoadSingle(string nextScene)
         {

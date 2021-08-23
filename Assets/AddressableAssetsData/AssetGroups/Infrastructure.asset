@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 2b7c4747fef3ca34fa504da529dabe52
   m_SerializeEntries:
-  - m_GUID: 24e165212529e0d4ea54c443e2bb1ab3
-    m_Address: GameBoostrapper
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 1598828007826955286, guid: 24e165212529e0d4ea54c443e2bb1ab3, type: 3}
-    m_TargetAsset: {fileID: 1598828007826955286, guid: 24e165212529e0d4ea54c443e2bb1ab3, type: 3}
   - m_GUID: be4375d04aa5b5543afadd10c189825f
     m_Address: GameRunner
     m_ReadOnly: 0

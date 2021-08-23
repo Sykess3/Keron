@@ -16,7 +16,19 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 488f993be51224641af750f7fbb166c2
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: a2dbc36369df2344ca6f2821af7d11b1
+    m_Address: demo_scene_floor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2100000, guid: a2dbc36369df2344ca6f2821af7d11b1, type: 2}
+    m_TargetAsset: {fileID: 2100000, guid: a2dbc36369df2344ca6f2821af7d11b1, type: 2}
+  - m_GUID: 1e8aad637ad10024eab9a69ed1d06fc2
+    m_Address: Assets/Resources_moved/Levels/Graveyard_enviroment/raw/textures/demo_scene_floor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d8c330fe8202eac40a0c57f1dc3f9409, type: 2}
   m_SchemaSet:
