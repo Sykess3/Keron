@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace CodeBase.Data
 {
@@ -10,6 +11,8 @@ namespace CodeBase.Data
         public Stats HeroStats;
         public KillData KillData;
         public Money Money;
+        public PurchaseData PurchaseData;
+
 
         public PlayerProgress(WorldData worldData, State heroState, Stats heroStats)
         {
@@ -18,6 +21,7 @@ namespace CodeBase.Data
             HeroStats = heroStats;
             KillData = new KillData();
             Money = new Money();
+            PurchaseData = new PurchaseData();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeBase.Infrastructure.Factory;
+using CodeBase.Infrastructure.Services.IAP;
 using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.Logic;
 using CodeBase.Services;
@@ -26,7 +27,8 @@ namespace CodeBase.Infrastructure.GameStates
                     ),
                 [typeof(StaticDataLoadGameState)] = new StaticDataLoadGameState(
                     this, 
-                    services.Single<IStaticDataService>()
+                    services.Single<IStaticDataService>(),
+                    services.Single<IIAPService>()
                     ), 
                 [typeof(LoadLevelState)] = new LoadLevelState(
                     this,

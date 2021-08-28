@@ -48,10 +48,8 @@ namespace CodeBase.Enemy
         {
             UpdateCooldown();
 
-            if (CanAttack())
-            {
+            if (CanAttack()) 
                 StartAttack();
-            }
         }
 
         private void OnAttackEnd()

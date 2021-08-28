@@ -1,7 +1,10 @@
-﻿namespace CodeBase.Infrastructure.AssetManagement
+﻿using UnityEngine.ResourceManagement.ResourceLocations;
+
+namespace CodeBase.Infrastructure.AssetManagement
 {
     public static class AssetAddress
     {
+        public const string IAPConfigs = "IAPConfigs";
         public const string UIRoot = "UIRoot";
         public const string TransferLevelTrigger = "LevelTransferTrigger";
         public const string Hero = "Hero";

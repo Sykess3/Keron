@@ -26,7 +26,7 @@ namespace CodeBase.UI.Windows
         public void Subscribe() => 
             _adService.RewardedVideoReady += RefreshAdsAvailability;
 
-        public void Cleanup() => 
+        public void CleanUp() => 
             _adService.RewardedVideoReady -= RefreshAdsAvailability;
 
         private void RefreshAdsAvailability()

@@ -40,9 +40,6 @@ namespace CodeBase.Infrastructure.AssetManagement
         
         public async Task<T> LoadSingleForEntireLiceCycle<T>(string assetAddress) where T : class
         {
-            if (_completedCache.TryGetValue(assetAddress, out AsyncOperationHandle completedHandle))
-                return completedHandle.Result as T;
-
             AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(assetAddress);
             return await handle.Task;
         }
@@ -58,12 +55,12 @@ namespace CodeBase.Infrastructure.AssetManagement
         }
         public async Task<IList<T>> LoadCollectionForEntireLiceCycle<T>(string assetAddress) where T : class
         {
-             if (_completedCache.TryGetValue(assetAddress, out AsyncOperationHandle completedHandle))
-                 return completedHandle.Result as IList<T>;
              AsyncOperationHandle<IList<T>> handle = Addressables.LoadAssetsAsync<T>(assetAddress, null);
-
              return await handle.Task;
         }
+
+        public async Task<GameObject> Instantiate(string shopItemPath, Transform under) => 
+            await Addressables.InstantiateAsync(shopItemPath, under).Task;
 
         public async Task<GameObject> Instantiate(string address, Vector3 at) => 
             await Addressables.InstantiateAsync(address, at, Quaternion.identity).Task;

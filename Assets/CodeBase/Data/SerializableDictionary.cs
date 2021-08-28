@@ -14,8 +14,11 @@ namespace CodeBase.Data
 
         protected readonly Dictionary<TKey, TValue> Dictionary = new Dictionary<TKey, TValue>();
 
-        public TValue this[TKey key] => 
-            Dictionary[key];
+        public TValue this[TKey key]
+        {
+            get => Dictionary[key];
+            set => Dictionary[key] = value;
+        }
 
         public bool Contains(TKey id) => 
             Dictionary.ContainsKey(id);

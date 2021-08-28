@@ -10,6 +10,8 @@ namespace CodeBase.Infrastructure.AssetManagement
     {
         Task<GameObject> Instantiate(string path, Vector3 at);
         Task<GameObject> Instantiate(string path);
+        Task<GameObject> Instantiate(string shopItemPath, Transform parent);
+
         Task<T> LoadSingle<T>(AssetReferenceGameObject assetReference) where T : class;
         void CleanUp();
         Task<T> LoadSingle<T>(string assetAddress) where T : class;
@@ -17,5 +19,6 @@ namespace CodeBase.Infrastructure.AssetManagement
         Task<IList<T>> LoadCollection<T>(string assetAddress) where T : class;
         Task<T> LoadSingleForEntireLiceCycle<T>(string assetAddress) where T : class;
         Task<IList<T>> LoadCollectionForEntireLiceCycle<T>(string assetAddress) where T : class;
+        
     }
 }

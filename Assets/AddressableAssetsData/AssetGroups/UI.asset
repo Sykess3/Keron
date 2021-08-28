@@ -21,38 +21,56 @@ MonoBehaviour:
     m_Address: Curtain
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 8493594776518678524, guid: 9999f750a9cb62f4e95f2b25c7f6aec2, type: 3}
-    m_TargetAsset: {fileID: 8493594776518678524, guid: 9999f750a9cb62f4e95f2b25c7f6aec2, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 15d36bd8887cfd141885f10ef2737cb9
     m_Address: Shop
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 15367329305893657, guid: 15d36bd8887cfd141885f10ef2737cb9, type: 3}
-    m_TargetAsset: {fileID: 15367329305893657, guid: 15d36bd8887cfd141885f10ef2737cb9, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 74490a21e2a838b4a8b917973aed768a
     m_Address: Window
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 8379612699623689192, guid: 74490a21e2a838b4a8b917973aed768a, type: 3}
-    m_TargetAsset: {fileID: 8379612699623689192, guid: 74490a21e2a838b4a8b917973aed768a, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: fc78be27ef016394f999863fa28c0904
     m_Address: Money_container
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 4360609204743105137, guid: fc78be27ef016394f999863fa28c0904, type: 3}
-    m_TargetAsset: {fileID: 4360609204743105137, guid: fc78be27ef016394f999863fa28c0904, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 5130b0c1fc9f25a458c97b803e579888
     m_Address: ShopItem
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 1435876672678845309, guid: 5130b0c1fc9f25a458c97b803e579888, type: 3}
-    m_TargetAsset: {fileID: 1435876672678845309, guid: 5130b0c1fc9f25a458c97b803e579888, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 12e314b27b1c913418324ee9ba1dce8c
     m_Address: UIRoot
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 623720911897921604, guid: 12e314b27b1c913418324ee9ba1dce8c, type: 3}
-    m_TargetAsset: {fileID: 623720911897921604, guid: 12e314b27b1c913418324ee9ba1dce8c, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8925c87a7beb94c4bb8da70f92affebc
+    m_Address: iap_icon_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 8925c87a7beb94c4bb8da70f92affebc, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 8925c87a7beb94c4bb8da70f92affebc, type: 3}
+  - m_GUID: ea9306e1aa95eb8439400efefff9f8db
+    m_Address: iap_icon_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: ea9306e1aa95eb8439400efefff9f8db, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: ea9306e1aa95eb8439400efefff9f8db, type: 3}
+  - m_GUID: 8a38e0c362c83a047983d02b417b0980
+    m_Address: iap_icon_18
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2800000, guid: 8a38e0c362c83a047983d02b417b0980, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 8a38e0c362c83a047983d02b417b0980, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d8c330fe8202eac40a0c57f1dc3f9409, type: 2}
   m_SchemaSet:

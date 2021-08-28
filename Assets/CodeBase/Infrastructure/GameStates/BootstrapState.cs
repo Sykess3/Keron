@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services.Ads;
+using CodeBase.Infrastructure.Services.IAP;
 using CodeBase.Infrastructure.Services.Randomizer;
 using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.Services;
@@ -49,12 +50,13 @@ namespace CodeBase.Infrastructure.GameStates
             IRandomizer randomizer = RegisterRandomizer();
             IPersistentProgressService persistentProgress = RegisterPersistentProgress();
             IAdsService adsService = RegisterAdsService();
+            IIAPService iapService = RegisterIAPService(persistentProgress, new IAPProvider(assets));
             IUIFactory uiFactory = RegisterUIFactory(
                 assets,
                 staticData,
                 persistentProgress,
-                adsService
-            );
+                adsService, 
+                iapService);
             IWindowsService windowsService = RegisterWindowsService(uiFactory);
             ISaveLoadService saveLoadService = RegisterSaveLoad(persistentProgress);
             IGameFactory gameFactory = RegisterGameFactory(
@@ -67,8 +69,16 @@ namespace CodeBase.Infrastructure.GameStates
                 saveLoadService);
             saveLoadService.GameFactory = gameFactory;
 
+
             _services.RegisterSingle<IInputService>(new SimpleInputService());
             
+        }
+
+        private IIAPService RegisterIAPService(IPersistentProgressService persistentProgress, IAPProvider iapProvider)
+        {
+            IAPService iapService = new IAPService(persistentProgress, iapProvider);
+            _services.RegisterSingle<IIAPService>(iapService);
+            return _services.Single<IIAPService>();
         }
 
         private ISaveLoadService RegisterSaveLoad(IPersistentProgressService persistentProgress)
@@ -99,13 +109,13 @@ namespace CodeBase.Infrastructure.GameStates
             return _services.Single<IWindowsService>();
         }
 
-        private IUIFactory RegisterUIFactory(
-            IAssets assets,
+        private IUIFactory RegisterUIFactory(IAssets assets,
             IStaticDataService staticData,
             IPersistentProgressService progressService,
-            IAdsService adService)
+            IAdsService adService,
+            IIAPService iapService)
         {
-            _services.RegisterSingle<IUIFactory>(new UIFactory(assets, staticData, progressService, adService));
+            _services.RegisterSingle<IUIFactory>(new UIFactory(assets, staticData, progressService, adService, iapService));
             return _services.Single<IUIFactory>();
         }
 
