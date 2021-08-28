@@ -74,10 +74,7 @@ namespace CodeBase.Infrastructure.Services.IAP
                 
                 bool ProductBoughtOut()
                 {
-                    if (purchaseData.BoughtIAPs.Contains(productId))
-                        return purchaseData.BoughtIAPs[productId].Count >= config.MaxPurchaseCount;
-                
-                    return false;
+                    return purchaseData.BoughtIAPs.Contains(productId) && purchaseData.BoughtIAPs[productId].Count >= config.MaxPurchaseCount;
                 }
             }
         }
