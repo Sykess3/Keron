@@ -1,6 +1,8 @@
-﻿namespace CodeBase.Data
+﻿using System;
+
+namespace CodeBase.Data
 {
-    [System.Serializable]
+    [Serializable]
     public class PositionOnLevel
     {
         public string Level;

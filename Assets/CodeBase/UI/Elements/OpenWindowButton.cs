@@ -1,7 +1,7 @@
-﻿using System;
-using CodeBase.UI.Services.Windows;
+﻿using CodeBase.UI.Services.Windows;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace CodeBase.UI.Elements
 {
@@ -12,7 +12,8 @@ namespace CodeBase.UI.Elements
         
         private IWindowsService _windowsService;
 
-        public void Construct(IWindowsService windowsService)
+        [Inject]
+        private void Construct(IWindowsService windowsService)
         {
             _windowsService = windowsService;
         }

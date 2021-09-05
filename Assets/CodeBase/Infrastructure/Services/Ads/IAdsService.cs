@@ -3,7 +3,7 @@ using CodeBase.Services;
 
 namespace CodeBase.Infrastructure.Services.Ads
 {
-    public interface IAdsService : IService
+    public interface IAdsService
     {
         event Action RewardedVideoReady;
         bool IsRewardedVideoReady { get; }

@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
-using CodeBase.Services;
+﻿using CodeBase.Services;
 
 namespace CodeBase.Infrastructure.GameStates
 {
-    public interface IGameStateMachine : IService
+    public interface IGameStateMachine 
     {
         void Enter<TState>() where TState : class, IGameState;
 

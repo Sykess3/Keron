@@ -1,16 +1,16 @@
-﻿using System;
-using CodeBase.Data;
+﻿using CodeBase.Data;
 using CodeBase.Infrastructure;
 using CodeBase.Logic;
 using CodeBase.Services;
 using CodeBase.Services.Input;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Hero
 {
     [RequireComponent(typeof(HeroAnimator))]
     [RequireComponent(typeof(CharacterController))]
-    public class HeroAttack : MonoBehaviour, ISavedProgress
+    public class HeroAttack : MonoBehaviour, ISavedProgressCleanable
     {
         [SerializeField] private HeroAnimator _animator;
         [SerializeField] private CharacterController _characterController;
@@ -20,13 +20,15 @@ namespace CodeBase.Hero
         private int _layerMask;
         private readonly Collider[] _hits = new Collider[3];
 
-        private void Awake()
-        {
-            _input = AllServices.Container.Single<IInputService>();
-
+        private void Awake() => 
             _layerMask = 1 << LayerMask.NameToLayer("Hittable");
-        }
 
+        [Inject]
+        private void Construct(IInputService inputService)
+        {
+            _input = inputService;
+        }
+        
         private void Update()
         {
             if (_input.IsAttackButtonUp() && !_animator.IsAttacking)

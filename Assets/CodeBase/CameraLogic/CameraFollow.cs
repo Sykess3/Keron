@@ -1,6 +1,4 @@
-﻿using System;
-using CodeBase.CustomAttributes;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CodeBase.CameraLogic
 {

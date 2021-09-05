@@ -10,37 +10,13 @@ using UnityEngine.SceneManagement;
 
 namespace CodeBase.Infrastructure
 {
-    public class SceneLoader
+    public class SceneLoader : ISceneLoader
     {
-        private readonly ICoroutineRunner _coroutineRunner;
         private readonly List<AsyncOperationHandle<SceneInstance>> _previousScenesHandles = new List<AsyncOperationHandle<SceneInstance>>();
-        private const string Initial = "Initial";
 
-        public SceneLoader(ICoroutineRunner coroutineRunner)
-        {
-            _coroutineRunner = coroutineRunner;
-        }
-        
         public async Task Load(string name, LoadSceneMode sceneMode, Action onLoaded = null) =>
             await LoadScene(name, sceneMode, onLoaded);
         
-        public void LoadInitial(Action onLoaded = null) =>
-            _coroutineRunner.StartCoroutine(LoadScene(Initial, onLoaded));
-
-        private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
-        {
-            if (SceneManager.GetActiveScene().name == nextScene)
-            {
-                onLoaded?.Invoke();
-                yield break;
-            }
-            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
-
-            while (!waitNextScene.isDone)
-                yield return null;
-            onLoaded?.Invoke();
-        }
-
         private async Task LoadScene(string nextScene, LoadSceneMode sceneMode, Action onLoaded = null)
         {
             AsyncOperationHandle<SceneInstance> waitNextScene =

@@ -1,27 +1,26 @@
-﻿using System;
-using CodeBase.Data;
+﻿using CodeBase.Data;
 using CodeBase.Infrastructure;
 using CodeBase.Services;
 using CodeBase.Services.Input;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace CodeBase.Hero
 {
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(HeroAnimator))]
-    public class HeroMovement : MonoBehaviour, ISavedProgress
+    public class HeroMovement : MonoBehaviour, ISavedProgressCleanable
     {
-        [SerializeField] private float _movementSpeed;
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private HeroAnimator _animator;
 
+        [SerializeField] private float _speed;
         private IInputService _inputService;
 
-        private void Awake()
-        {
-            _inputService = AllServices.Container.Single<IInputService>();
-        }
+        [Inject]
+        private void Construct(IInputService inputService) => 
+            _inputService = inputService;
 
         private void Update()
         {
@@ -68,7 +67,7 @@ namespace CodeBase.Hero
             new Vector3(_inputService.Axis.x, 0, _inputService.Axis.y);
 
         private Vector3 GetVelocity(Vector3 movementDirection) => 
-            movementDirection * (_movementSpeed * Time.deltaTime);
+            movementDirection * (_speed * Time.deltaTime);
 
         private static string CurrentLevel() => 
             SceneManager.GetActiveScene().name;

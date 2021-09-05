@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
 
 namespace CodeBase.Data
 {
-    [System.Serializable]
+    [Serializable]
     public class Vector3Data
     {
         public float X;

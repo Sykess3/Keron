@@ -2,7 +2,7 @@
 
 namespace CodeBase.Services.PersistentProgress
 {
-    public interface IPersistentProgressService : IService
+    public interface IPersistentProgressService 
     {
         PlayerProgress Progress { get; set; }
     }

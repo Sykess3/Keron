@@ -1,13 +1,11 @@
 ﻿using System.Threading.Tasks;
 using CodeBase.Infrastructure.AssetManagement;
-using CodeBase.Infrastructure.Services.Ads;
-using CodeBase.Infrastructure.Services.IAP;
-using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.StaticData;
 using CodeBase.StaticData;
 using CodeBase.UI.Services.Windows;
 using CodeBase.UI.Windows;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.UI.Services.Factory
 {
@@ -15,28 +13,22 @@ namespace CodeBase.UI.Services.Factory
     {
         private readonly IAssets _assets;
         private readonly IStaticDataService _staticData;
-        private readonly IPersistentProgressService _progressService;
-        private readonly IAdsService _adService;
         private Transform _uiRoot;
-        private IIAPService _iapService;
+        private readonly DiContainer _diContainer;
 
         public UIFactory(
             IAssets assets,
             IStaticDataService staticData,
-            IPersistentProgressService progressService,
-            IAdsService adService, 
-            IIAPService iapService)
+            DiContainer diContainer)
         {
             _assets = assets;
             _staticData = staticData;
-            _progressService = progressService;
-            _adService = adService;
-            _iapService = iapService;
+            _diContainer = diContainer;
         }
 
         public async Task CreateUIRoot()
         {
-            GameObject uiRoot = await _assets.Instantiate(AssetAddress.UIRoot);
+            GameObject uiRoot = await _assets.LoadSingle<GameObject>(AssetAddress.UIRoot);
             _uiRoot = uiRoot.transform;
         }
 
@@ -44,8 +36,10 @@ namespace CodeBase.UI.Services.Factory
         {
             WindowConfig windowConfig = _staticData.ForWindow(WindowId.Shop);
 
-            ShopWindow window = Object.Instantiate(windowConfig.WindowPrefab, _uiRoot) as ShopWindow;
-            window.Construct(_progressService, _adService, _progressService, _assets, _iapService);
+            InstantiatePrefabForComponent<ShopWindow>(windowConfig.WindowPrefab, _uiRoot);
         }
+
+        private T InstantiatePrefabForComponent<T>(Object prefab, Transform under) => 
+            _diContainer.InstantiatePrefabForComponent<T>(prefab, under);
     }
 }

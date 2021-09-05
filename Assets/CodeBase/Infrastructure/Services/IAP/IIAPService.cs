@@ -5,7 +5,7 @@ using CodeBase.Services;
 
 namespace CodeBase.Infrastructure.Services.IAP
 {
-    public interface IIAPService : IService
+    public interface IIAPService 
     {
         bool IsInitialized { get; }
         event Action Initialized;

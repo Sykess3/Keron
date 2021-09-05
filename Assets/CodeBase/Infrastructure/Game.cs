@@ -1,6 +1,4 @@
 ﻿using CodeBase.Infrastructure.GameStates;
-using CodeBase.Logic;
-using CodeBase.Services;
 
 namespace CodeBase.Infrastructure
 {
@@ -8,15 +6,11 @@ namespace CodeBase.Infrastructure
     {
         private readonly IGameStateMachine _stateMachine;
 
-        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain loadingCurtain)
-        {
-            _stateMachine = new GameStateMachine(
-                new SceneLoader(coroutineRunner),
-                loadingCurtain,
-                AllServices.Container);
-        }
+        public Game(IGameStateMachine gameStateMachine) => 
+            _stateMachine = gameStateMachine;
 
-        public void EnterBootstrap() => 
-            _stateMachine.Enter<BootstrapState>();
+        public void Run() =>
+            _stateMachine.Enter<StaticDataLoadGameState>();
+
     }
 }

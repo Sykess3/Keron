@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CodeBase.Infrastructure
 {
     public class GameRunner : MonoBehaviour
     {
-        [SerializeField] private GameBootstrapper _gameBootstrapperPrefab;
-        private void Awake()
-        {
-            if (FindObjectOfType<GameBootstrapper>() == null)
-                Instantiate(_gameBootstrapperPrefab);
-            DestroyImmediate(gameObject);
-        }
+        private const string Initial = "Initial";
+
+        [RuntimeInitializeOnLoadMethod]
+        private static void LoadBootScene() => 
+            SceneManager.LoadScene(Initial);
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
-using CodeBase.Hero;
+﻿using CodeBase.Hero;
 using CodeBase.Infrastructure.GameStates;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.SaveLoad
 {
@@ -12,15 +12,16 @@ namespace CodeBase.Logic.SaveLoad
         private IGameStateMachine _stateMachine;
         private string _nextLevel;
 
-        public void Construct(IGameStateMachine stateMachine, string nextLevel)
-        {
+        [Inject]
+        private void Construct(IGameStateMachine stateMachine) => 
             _stateMachine = stateMachine;
+
+        public void Configure(string nextLevel) => 
             _nextLevel = nextLevel;
-        }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.TryGetComponent(out HeroMovement heroMovement))
+            if (other.gameObject.TryGetComponent(out HeroService heroService))
                 _stateMachine.Enter<LoadLevelState, string>(_nextLevel);
         }
 

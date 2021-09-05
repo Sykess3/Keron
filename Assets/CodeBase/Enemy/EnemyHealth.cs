@@ -1,7 +1,5 @@
 ﻿using System;
-using CodeBase.Data;
-using CodeBase.Infrastructure;
-using CodeBase.Logic;
+using CodeBase.CustomAttributes;
 using UnityEngine;
 
 namespace CodeBase.Enemy
@@ -11,10 +9,9 @@ namespace CodeBase.Enemy
     {
         [SerializeField] private EnemyAnimator _animator;
 
-        [SerializeField] private float _current;
+        private float _current;
 
-        [Header("Load from static data")]
-        [SerializeField] private float _max;
+        private float _max;
 
         public float Current => _current;
 
@@ -22,7 +19,7 @@ namespace CodeBase.Enemy
 
         public event Action HealthChanged;
 
-        public void Construct(float health)
+        public void Consfigure(float health)
         {
             _max = health;
             _current = health;

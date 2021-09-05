@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CodeBase.Hero;
-using CodeBase.Logic;
 using CodeBase.Logic.EnemySpawners;
 using CodeBase.Logic.Loot;
 using CodeBase.Services;
 using CodeBase.StaticData;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Infrastructure.Factory
 {
-    public interface IGameFactory : IService
+    public interface IGameFactory 
     {
         Task<GameObject> CreateHero(Vector3 at);
         Task<GameObject> CreateHud();
-        
-        IEnumerable<ISavedProgressReader> ProgressReaders { get; }
-        IEnumerable<ISavedProgress> ProgressWritersAndReaders { get; }
         
         void CleanUp();
         Task<GameObject> CreateMonster(MonsterTypeId monsterTypeId, Transform parent);
@@ -27,5 +21,6 @@ namespace CodeBase.Infrastructure.Factory
         void CreateTransferLevelTrigger(string currentScene);
         void CreateSaveTrigger(string currentScene);
         void WarmUp();
+        DiContainer SceneContextContainer { get; set; }
     }
 }

@@ -1,9 +1,9 @@
-using System;
 using CodeBase.Data;
 using CodeBase.Enemy;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services.Randomizer;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Loot
 {
@@ -15,7 +15,8 @@ namespace CodeBase.Logic.Loot
         private int _minLoot;
         private int _maxLoot;
 
-        public void Construct(IGameFactory factory, IRandomizer randomizer)
+        [Inject]
+        private void Construct(IGameFactory factory, IRandomizer randomizer)
         {
             _factory = factory;
             _randomizer = randomizer;
