@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
-using CodeBase.Logic.Loot;
-using UnityEngine;
+﻿using System;
 
 namespace CodeBase.Data
 {
-    [System.Serializable]
+    [Serializable]
     public class WorldData
     {
         public PositionOnLevel PositionOnLevel;
-        public NonPickedUpLoot NonPickedUpLoot;
+        public SerializableDictionary<string, NonPickedUpLoot> NonPickedUpLoot;
         public WorldData(string initialLevel)
         {
             PositionOnLevel = new PositionOnLevel(level: initialLevel);
-            NonPickedUpLoot = new NonPickedUpLoot();
+            NonPickedUpLoot = new SerializableDictionary<string, NonPickedUpLoot>
+            {
+                {"Graveyard", new NonPickedUpLoot()},
+                {"Dungeon", new NonPickedUpLoot()}
+            };
         }
     }
 }

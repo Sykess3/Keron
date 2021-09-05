@@ -2,7 +2,7 @@
 
 namespace CodeBase.UI.Services.Windows
 {
-    public interface IWindowsService : IService
+    public interface IWindowsService 
     {
         void Open(WindowId windowId);
     }

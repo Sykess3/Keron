@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CodeBase.Infrastructure.Factory;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -58,9 +56,9 @@ namespace CodeBase.Infrastructure.AssetManagement
              AsyncOperationHandle<IList<T>> handle = Addressables.LoadAssetsAsync<T>(assetAddress, null);
              return await handle.Task;
         }
-
-        public async Task<GameObject> Instantiate(string shopItemPath, Transform under) => 
-            await Addressables.InstantiateAsync(shopItemPath, under).Task;
+        
+        public async Task<GameObject> Instantiate(string address, Transform under) => 
+            await Addressables.InstantiateAsync(address, under).Task;
 
         public async Task<GameObject> Instantiate(string address, Vector3 at) => 
             await Addressables.InstantiateAsync(address, at, Quaternion.identity).Task;
@@ -70,9 +68,10 @@ namespace CodeBase.Infrastructure.AssetManagement
 
         public void CleanUp()
         {
-            foreach (var handle in _handles.Values.SelectMany(resourceHandles => resourceHandles))
+            foreach (List<AsyncOperationHandle> resourceHandles in _handles.Values)
+            foreach (AsyncOperationHandle handle in resourceHandles)
                 Addressables.Release(handle);
-            
+
             _completedCache.Clear();
             _handles.Clear();
         }

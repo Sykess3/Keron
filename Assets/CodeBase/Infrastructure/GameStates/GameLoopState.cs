@@ -1,12 +1,13 @@
-﻿namespace CodeBase.Infrastructure.GameStates
+﻿using Zenject;
+
+namespace CodeBase.Infrastructure.GameStates
 {
     public class GameLoopState : IGameState
     {
-        private readonly IGameStateMachine _stateMachine;
-
-        public GameLoopState(IGameStateMachine gameStateMachine)
+        private readonly LazyInject<IGameStateMachine> _stateMachine;
+        public GameLoopState(LazyInject<IGameStateMachine> stateMachine)
         {
-            _stateMachine = gameStateMachine;
+            _stateMachine = stateMachine;
         }
 
         public void Enter()

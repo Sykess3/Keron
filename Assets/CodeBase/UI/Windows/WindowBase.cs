@@ -1,8 +1,8 @@
-﻿using System;
-using CodeBase.Data;
+﻿using CodeBase.Data;
 using CodeBase.Services.PersistentProgress;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace CodeBase.UI.Windows
 {
@@ -16,7 +16,8 @@ namespace CodeBase.UI.Windows
             _closeButton.onClick.AddListener(OnAwake);
         }
 
-        public void Construct(IPersistentProgressService progressService)
+        [Inject]
+        private void Construct(IPersistentProgressService progressService)
         {
             Progress = progressService.Progress;
         }

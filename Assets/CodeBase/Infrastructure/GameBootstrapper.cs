@@ -1,17 +1,21 @@
+using CodeBase.Infrastructure.GameStates;
 using CodeBase.Logic;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Infrastructure
 {
-    public class GameBootstrapper : MonoBehaviour, ICoroutineRunner
+    public class GameBootstrapper : MonoBehaviour
     {
-        [SerializeField] private LoadingCurtain _loadingCurtainPrefab;
         private Game _game;
+        private IGameStateMachine _gameStateMachine;
 
-        private void Awake()
+        [Inject]
+        private void Construct(IGameStateMachine gameStateMachine)
         {
-            _game = new Game(this, Instantiate(_loadingCurtainPrefab));
-            _game.EnterBootstrap();
+            _gameStateMachine = gameStateMachine;
+            _game = new Game(gameStateMachine);
+            _game.Run();
 
             DontDestroyOnLoad(this);
         }

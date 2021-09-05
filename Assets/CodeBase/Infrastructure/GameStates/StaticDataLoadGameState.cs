@@ -1,26 +1,30 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CodeBase.Infrastructure.Services.IAP;
 using CodeBase.Services.StaticData;
+using Zenject;
 
 namespace CodeBase.Infrastructure.GameStates
 {
     public class StaticDataLoadGameState : IGameState
     {
-        private readonly IGameStateMachine _stateMachine;
+        private readonly LazyInject<IGameStateMachine> _stateMachine;
         private readonly IStaticDataService _staticDataService;
         private readonly IIAPService _iapService;
-
-        public StaticDataLoadGameState(IGameStateMachine stateMachine, IStaticDataService staticDataService, IIAPService iapService)
+        
+        
+        public StaticDataLoadGameState(LazyInject<IGameStateMachine> stateMachine,
+            IStaticDataService staticDataService, IIAPService iapService)
         {
-            _iapService = iapService;
             _stateMachine = stateMachine;
+            _iapService = iapService;
             _staticDataService = staticDataService;
         }
 
         public async void Enter()
         {
             await LoadResources();
-            _stateMachine.Enter<LoadProgressState>();
+            _stateMachine.Value.Enter<LoadProgressState>();
         }
 
         private async Task LoadResources()

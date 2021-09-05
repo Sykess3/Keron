@@ -1,5 +1,4 @@
 ﻿using CodeBase.Data;
-using CodeBase.Hero;
 using TMPro;
 using UnityEngine;
 
@@ -18,7 +17,7 @@ namespace CodeBase.UI.Elements
             UpdateCounter();
         }
         
-        private void OnDestroy()
+        private void OnDisable()
         {
             _money.Changed -= UpdateCounter;
         }

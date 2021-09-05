@@ -1,10 +1,10 @@
-﻿using CodeBase.Data;
-using CodeBase.Infrastructure.AssetManagement;
+﻿using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services.Ads;
 using CodeBase.Infrastructure.Services.IAP;
 using CodeBase.Services.PersistentProgress;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.UI.Windows
 {
@@ -13,20 +13,7 @@ namespace CodeBase.UI.Windows
         [SerializeField] private TextMeshProUGUI _skullText;
         [SerializeField] private RewardedAdItem _rewardedAd;
         [SerializeField] private ShopItemsContainer _shopItemsContainer;
-
-        public void Construct(
-            IPersistentProgressService playerProgress, 
-            IAdsService adsService,
-            IPersistentProgressService _progressService, 
-            IAssets _assets, 
-            IIAPService _iapService)
-        {
-            base.Construct(playerProgress);
-            
-            _rewardedAd.Construct(adsService, Progress);
-            _shopItemsContainer.Construct(_progressService, _iapService, _assets);
-            
-        }
+        
 
         protected override void Initialize()
         {

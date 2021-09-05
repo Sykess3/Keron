@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using CodeBase.Data;
 using CodeBase.Enemy;
+using CodeBase.Hero;
 using CodeBase.Infrastructure.AssetManagement;
-using CodeBase.Infrastructure.GameStates;
-using CodeBase.Infrastructure.Services.Randomizer;
-using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.Logic.EnemySpawners;
 using CodeBase.Logic.Loot;
 using CodeBase.Logic.SaveLoad;
@@ -12,88 +10,62 @@ using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.StaticData;
 using CodeBase.StaticData;
 using CodeBase.UI.Elements;
-using CodeBase.UI.Services.Windows;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using Zenject;
 
 namespace CodeBase.Infrastructure.Factory
 {
     public class GameFactory : IGameFactory
     {
-        private readonly IAssets _assets;
-        private readonly IRandomizer _randomizer;
-        private readonly IStaticDataService _staticData;
-        private readonly IPersistentProgressService _persistentProgress;
-        private readonly IWindowsService _windowsService;
-
-        private readonly List<ISavedProgressReader> _progressReaders = new List<ISavedProgressReader>();
-        private readonly List<ISavedProgress> _progressWritersAndReaders = new List<ISavedProgress>();
-
         private GameObject _heroGameObject;
-        private readonly IGameStateMachine _stateMachine;
-        private readonly ISaveLoadService _saveLoadService;
+        private readonly IStaticDataService _staticData;
+        private readonly IAssets _assets;
+        private readonly IProgressWatchers _progressWatchers;
+        private readonly IPersistentProgressService _persistent;
 
-        public IEnumerable<ISavedProgressReader> ProgressReaders => _progressReaders;
-        public IEnumerable<ISavedProgress> ProgressWritersAndReaders => _progressWritersAndReaders;
+        public DiContainer SceneContextContainer { get; set; }
 
-        public GameFactory(IAssets assets,
-            IStaticDataService staticData,
-            IRandomizer randomizer,
-            IPersistentProgressService persistentProgress,
-            IWindowsService windowsService,
-            IGameStateMachine stateMachine,
-            ISaveLoadService saveLoadService)
+        public GameFactory(IProgressWatchers progressWatchers, IStaticDataService staticData, IAssets assets, IPersistentProgressService persistent)
         {
-            _assets = assets;
+            _progressWatchers = progressWatchers;
             _staticData = staticData;
-            _randomizer = randomizer;
-            _persistentProgress = persistentProgress;
-            _windowsService = windowsService;
-            _stateMachine = stateMachine;
-            _saveLoadService = saveLoadService;
+            _assets = assets;
+            _persistent = persistent;
         }
 
         public async void CreateTransferLevelTrigger(string currentScene)
         {
             LevelStaticData levelData = _staticData.ForLevel(currentScene);
 
-            GameObject transferTriggerPrefab = await _assets.LoadSingle<GameObject>(AssetAddress.TransferLevelTrigger);
-            GameObject transferTriggerObject = Object.Instantiate(transferTriggerPrefab, levelData.LevelTransferTrigger.Position, Quaternion.identity);
-
-            transferTriggerObject.GetComponent<BoxCollider>().size = levelData.LevelTransferTrigger.ColliderSize;
-
-            transferTriggerObject.GetComponent<LevelTransferTrigger>().Construct(_stateMachine, levelData.NextSceneKey);
+            GameObject levelTransferTriggerObject = await InstantiateRegisteredAsync(AssetAddress.TransferLevelTrigger,
+                levelData.LevelTransferTrigger.Position);
+            
+            levelTransferTriggerObject.GetComponent<LevelTransferTrigger>().Configure(levelData.NextSceneKey);
+            levelTransferTriggerObject.GetComponent<BoxCollider>().size = levelData.LevelTransferTrigger.ColliderSize;
         }
 
         public async void CreateSaveTrigger(string currentScene)
         {
             LevelStaticData levelData = _staticData.ForLevel(currentScene);
 
-            GameObject saveTriggerPrefab = await _assets.LoadSingle<GameObject>(AssetAddress.SaveTrigger);
-            GameObject saveTriggerObject = Object.Instantiate(saveTriggerPrefab, levelData.SaveTrigger.Position, Quaternion.identity);
-
-            saveTriggerObject.GetComponent<BoxCollider>().size = levelData.SaveTrigger.ColliderSize;
+            GameObject saveTriggerObject = await InstantiateRegisteredAsync(AssetAddress.SaveTrigger, levelData.SaveTrigger.Position);
             
-            saveTriggerObject.GetComponent<SaveTrigger>().Construct(_saveLoadService);
+            saveTriggerObject.GetComponent<BoxCollider>().size = levelData.SaveTrigger.ColliderSize;
         }
 
         public async Task<GameObject> CreateHero(Vector3 at)
         {
-            _heroGameObject = await InstantiateRegisteredAsync( AssetAddress.Hero, at);
+            _heroGameObject = await InstantiateRegisteredAsync(AssetAddress.Hero, at);
+            Bind_HeroService();
             return _heroGameObject;
         }
 
         public async Task<GameObject> CreateHud()
         {
-            GameObject hud = await InstantiateRegisteredAsync( AssetAddress.Hud);
-            InitMoneyCounter(hud);
-            InitHudButtons(hud);
+            GameObject hud = await InstantiateRegisteredAsync(AssetAddress.Hud);
+            hud.GetComponentInChildren<MoneyCounter>().Construct(_persistent.Progress.Money);
             return hud;
-        }
-
-        private void InitHudButtons(GameObject hud)
-        {
-            foreach (OpenWindowButton window in hud.GetComponentsInChildren<OpenWindowButton>())
-                window.Construct(_windowsService);
         }
 
 
@@ -101,28 +73,27 @@ namespace CodeBase.Infrastructure.Factory
         {
             MonsterStaticData monsterData = _staticData.ForMonster(monsterTypeId);
 
-            var prefab = await _assets.LoadSingle<GameObject>(monsterData.PrefabReference);
-            
-            GameObject monster = Object.Instantiate(prefab, parent.position, Quaternion.identity, parent);
+            GameObject monster = await InstantiateRegisteredAsync(monsterData.PrefabReference, parent);
+            ConfigureMonsterLoot(monster.GetComponentInChildren<LootSpawner>(), monsterData);
+            ConfigureMonsterStats(monster.GetComponent<EnemyStatsFacade>(), monsterData);
+            InitMonsterUI(monster.GetComponent<ActorUI>(), monster.GetComponent<IEnemyHealth>());
 
-            return InitMonsterComponents(monster, monsterData);
+            return monster;
         }
 
         public async Task<LootPiece> CreateLoot(Vector3 at)
         {
-            GameObject prefab = await _assets.LoadSingle<GameObject>(AssetAddress.Loot);
-            GameObject loot = InstantiateRegistered(prefab, at);
+            GameObject loot = await InstantiateRegisteredAsync(AssetAddress.Loot, at);
             return loot.GetComponent<LootPiece>();
         }
 
         public async Task<SpawnPoint> CreateSpawner(Vector3 at, string uniqueId, MonsterTypeId monsterTypeId)
         {
-            GameObject prefab = await _assets.LoadSingle<GameObject>(AssetAddress.SpawnPoint);
-            SpawnPoint spawner = InstantiateRegistered(prefab, at)
-                .GetComponent<SpawnPoint>();
-            
-            spawner.Construct(factory: this, monsterTypeId, uniqueId);
-            return spawner;
+            GameObject spawnerObject = await InstantiateRegisteredAsync(AssetAddress.SpawnPoint, at);
+
+            var spawnPoint = spawnerObject.GetComponent<SpawnPoint>();
+            spawnPoint.Configure(monsterTypeId, uniqueId);
+            return spawnPoint;
         }
 
         public async void WarmUp()
@@ -135,79 +106,60 @@ namespace CodeBase.Infrastructure.Factory
 
         public void CleanUp()
         {
-            _progressReaders.Clear();
-            _progressWritersAndReaders.Clear();
             _assets.CleanUp();
-        }
-
-        private GameObject InstantiateRegistered(GameObject prefab, Vector3 at)
-        {
-            GameObject gameObject = Object.Instantiate(prefab, at, Quaternion.identity);
-            RegisterProgressWatchers(gameObject);
-            return gameObject;
         }
 
         private async Task<GameObject> InstantiateRegisteredAsync(string address, Vector3 at)
         {
-            GameObject gameObject = await _assets.Instantiate(address, at);
-            RegisterProgressWatchers(gameObject);
+            GameObject prefab = await _assets.LoadSingle<GameObject>(address);
+            GameObject gameObject = SceneContextContainer.InstantiatePrefab(prefab, at, Quaternion.identity, null);
+            _progressWatchers.Register(gameObject);
             return gameObject;
         }
 
-        private async Task<GameObject> InstantiateRegisteredAsync(string prefabAddress)
+        private async Task<GameObject> InstantiateRegisteredAsync(AssetReferenceGameObject reference)
         {
-            GameObject gameObject = await _assets.Instantiate(prefabAddress);
-            RegisterProgressWatchers(gameObject);
+            GameObject prefab = await _assets.LoadSingle<GameObject>(reference);
+            GameObject gameObject = SceneContextContainer.InstantiatePrefab(prefab);
+            _progressWatchers.Register(gameObject);
+            return gameObject;
+        }
+        private async Task<GameObject> InstantiateRegisteredAsync(AssetReferenceGameObject reference, Transform under)
+        {
+            GameObject prefab = await _assets.LoadSingle<GameObject>(reference);
+            GameObject gameObject = SceneContextContainer.InstantiatePrefab(prefab, under);
+            _progressWatchers.Register(gameObject);
             return gameObject;
         }
 
-        private GameObject InstantiateRegistered(GameObject prefab)
+        private async Task<GameObject> InstantiateRegisteredAsync(string address)
         {
-            GameObject gameObject = Object.Instantiate(prefab);
-            RegisterProgressWatchers(gameObject);
+            GameObject prefab = await _assets.LoadSingle<GameObject>(address);
+            GameObject gameObject = SceneContextContainer.InstantiatePrefab(prefab);
+            _progressWatchers.Register(gameObject);
             return gameObject;
         }
 
-        private void Register(ISavedProgressReader progressReader)
+        private void Bind_HeroService()
         {
-            if (progressReader is ISavedProgress progressWriter)
-                _progressWritersAndReaders.Add(progressWriter);
-
-            _progressReaders.Add(progressReader);
+            SceneContextContainer
+                .Bind<HeroService>()
+                .FromInstance(_heroGameObject.GetComponent<HeroService>())
+                .AsSingle()
+                .NonLazy();
         }
 
-        private void RegisterProgressWatchers(GameObject gameObject)
-        {
-            foreach (var progress in gameObject.GetComponentsInChildren<ISavedProgressReader>())
-                Register(progress);
-        }
-
-        private void InitMoneyCounter(GameObject hud)
-        {
-            hud.GetComponentInChildren<MoneyCounter>()
-                .Construct(_persistentProgress.Progress.Money);
-        }
-
-        private GameObject InitMonsterComponents(GameObject monster, MonsterStaticData monsterData)
-        {
-            monster.GetComponent<Attack>().Construct(
-                _heroGameObject.transform,
-                monsterData.Attack.Damage,
-                monsterData.Attack.AttackCooldown,
-                monsterData.Attack.CleavageAttack,
-                monsterData.Attack.EffectiveDistance
-            );
-
-            IEnemyHealth health = monster.GetComponent<IEnemyHealth>();
-            health.Construct(monsterData.HP);
-            
-            monster.GetComponent<ActorUI>().Construct(health);
-            monster.GetComponent<Followable>().Construct(_heroGameObject.transform, monsterData.Speed);
-            var lootSpawner = monster.GetComponentInChildren<LootSpawner>();
-            lootSpawner.Construct(this, _randomizer);
+        private static void ConfigureMonsterLoot(LootSpawner lootSpawner, MonsterStaticData monsterData) => 
             lootSpawner.SetLoot(monsterData.Loot.MaxValue, monsterData.Loot.MinValue);
 
-            return monster;
+        private void ConfigureMonsterStats(EnemyStatsFacade to, MonsterStaticData from) => 
+            to.Construct(@from);
+
+
+        private static void InitMonsterUI(ActorUI ui, IEnemyHealth health)
+        {
+            ui.Construct(health);
         }
+        
     }
 }

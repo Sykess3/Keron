@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace CodeBase.StaticData
 {
-    [System.Serializable]
+    [Serializable]
     public class AttackStaticData
     {
         [Range(0.5f, 1f)]

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using CodeBase.Hero;
-using CodeBase.Infrastructure.Factory;
 using CodeBase.Logic;
-using CodeBase.Services;
+using CodeBase.StaticData;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 namespace CodeBase.Enemy
 {
@@ -16,11 +16,10 @@ namespace CodeBase.Enemy
 
         [SerializeField] private NavMeshAgent _agent;
 
-        [Header("Load from static data")]
-        [SerializeField] private float _cooldown;
-        [SerializeField] private float _cleavage;
-        [SerializeField] private float _effectiveDistance;
-        [SerializeField] private float _damage;
+        private float _cooldown;
+        private float _cleavage;
+        private float _effectiveDistance;
+        private float _damage;
 
         private Transform _heroTransform;
 
@@ -30,19 +29,20 @@ namespace CodeBase.Enemy
         private bool _isAttacking;
         private bool _attackIsEnabled;
 
-        public void Construct(Transform heroTransform, float damage, float cooldown, float cleavage, float effectiveDistance)
+        [Inject]
+        private void Construct(HeroService heroService) => 
+            _heroTransform = heroService.transform;
+
+        public void Configure(AttackStaticData config)
         {
-            _heroTransform = heroTransform;
-            _damage = damage;
-            _cooldown = cooldown;
-            _cleavage = cleavage;
-            _effectiveDistance = effectiveDistance;
+            _cooldown = config.AttackCooldown;
+            _cleavage = config.CleavageAttack;
+            _effectiveDistance = config.EffectiveDistance;
+            _damage = config.Damage;
         }
 
-        private void Awake()
-        {
+        private void Awake() => 
             _layerMask = 1 << LayerMask.NameToLayer("Player");
-        }
 
         private void Update()
         {

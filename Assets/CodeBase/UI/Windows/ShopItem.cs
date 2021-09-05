@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using CodeBase.Infrastructure.AssetManagement;
+﻿using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services.IAP;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace CodeBase.UI.Windows
 {
@@ -19,15 +19,16 @@ namespace CodeBase.UI.Windows
         private IIAPService _iapService;
         private IAssets _assets;
 
-        public void Construct(IAssets assets, IIAPService iapService, ProductDescription productDescription)
+        [Inject]
+        private void Construct(IAssets assets, IIAPService iapService)
         {
             _assets = assets;
             _iapService = iapService;
-            _productDescription = productDescription;
         }
-
-        public async void Initialize()
+        
+        public async void Initialize(ProductDescription productDescription)
         {
+            _productDescription = productDescription;
             _buyItemButton.onClick.AddListener(BuyIAP);
             _priceText.text = _productDescription.Config.Price;
             _quantityText.text = _productDescription.Config.Quantity.ToString();

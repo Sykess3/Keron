@@ -4,11 +4,12 @@ using CodeBase.Hero;
 using CodeBase.Infrastructure;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CodeBase.Logic.Loot
 {
     [RequireComponent(typeof(UniqueId))]
-    public class LootPiece : MonoBehaviour, ISavedProgress
+    public class LootPiece : MonoBehaviour, ISavedProgressCleanable
     {
         [SerializeField] private GameObject _skull;
         [SerializeField] private ParticleSystem _pickupFxPrefab;
@@ -42,7 +43,7 @@ namespace CodeBase.Logic.Loot
 
         public void UpdateProgress(ref PlayerProgress to)
         {
-            NonPickedUpLoot lootPiecesSavedData = to.WorldData.NonPickedUpLoot;
+            NonPickedUpLoot lootPiecesSavedData = to.WorldData.NonPickedUpLoot[SceneManager.GetActiveScene().name];
             if (_pickedUp) 
                 lootPiecesSavedData.SafeRemove(Id);
             else if (!lootPiecesSavedData.Contains(Id)) 

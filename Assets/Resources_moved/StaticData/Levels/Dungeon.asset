@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dungeon
   m_EditorClassIdentifier: 
   SceneKey: Dungeon
-  NextSceneKey: 
+  NextSceneKey: Initial
   Spawners:
   - MonsterTypeId: 0
     UniqueId: Main_7ac6f303-adbe-45a8-a1d4-809329cafc0d

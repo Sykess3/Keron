@@ -4,6 +4,7 @@ using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services.IAP;
 using CodeBase.Services.PersistentProgress;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.UI.Windows
 {
@@ -18,7 +19,8 @@ namespace CodeBase.UI.Windows
         private IAssets _assets;
         private readonly List<ShopItem> _shopItems = new List<ShopItem>();
 
-        public void Construct(IPersistentProgressService progress, IIAPService iapService, IAssets assets)
+        [Inject]
+        private void Construct(IPersistentProgressService progress, IIAPService iapService, IAssets assets)
         {
             _progressService = progress;
             _iapService = iapService;
@@ -58,8 +60,7 @@ namespace CodeBase.UI.Windows
             {
                 GameObject shopItemObject = await _assets.Instantiate(ShopItemPath, _parent);
                 ShopItem shopItem = shopItemObject.GetComponent<ShopItem>();
-                shopItem.Construct(_assets, _iapService, product);
-                shopItem.Initialize();
+                shopItem.Initialize(product);
                 
                 _shopItems.Add(shopItem);
             }

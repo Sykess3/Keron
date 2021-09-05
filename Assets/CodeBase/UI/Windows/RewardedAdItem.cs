@@ -1,7 +1,9 @@
 ﻿using CodeBase.Data;
 using CodeBase.Infrastructure.Services.Ads;
+using CodeBase.Services.PersistentProgress;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace CodeBase.UI.Windows
 {
@@ -12,12 +14,13 @@ namespace CodeBase.UI.Windows
         [SerializeField] private GameObject[] _adInactiveObjects;
         private IAdsService _adService;
         
-        private PlayerProgress _progress;
+        private IPersistentProgressService _persistent;
         
-        public void Construct(IAdsService adService, PlayerProgress playerProgress)
+        [Inject]
+        private void Construct(IAdsService adService, IPersistentProgressService playerProgress)
         {
             _adService = adService;
-            _progress = playerProgress;
+            _persistent = playerProgress;
         }
         
         public void Initialize() => 
@@ -44,6 +47,6 @@ namespace CodeBase.UI.Windows
             _adService.ShowRewardedVideo(OnVideoFinished);
 
         private void OnVideoFinished() => 
-            _progress.Money.Amount += _adService.RewardedVideo_Reward;
+            _persistent.Progress.Money.Amount += _adService.RewardedVideo_Reward;
     }
 }

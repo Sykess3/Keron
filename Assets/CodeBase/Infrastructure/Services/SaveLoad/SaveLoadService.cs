@@ -2,6 +2,7 @@
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Services.PersistentProgress;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Infrastructure.Services.SaveLoad
 {
@@ -9,20 +10,34 @@ namespace CodeBase.Infrastructure.Services.SaveLoad
     {
         private const string ProgressKey = "Progress";
         private readonly IPersistentProgressService _progress;
-        public IGameFactory GameFactory { get; set; }
+        private readonly IProgressWatchersContainer _progressWatchersContainer;
 
-        public SaveLoadService(IPersistentProgressService progress)
+        public SaveLoadService(DiContainer diContainer, IPersistentProgressService progress, IProgressWatchersContainer progressWatchersContainer)
         {
             _progress = progress;
+            _progressWatchersContainer = progressWatchersContainer;
         }
         
         public void SaveProgress()
         {
             PlayerProgress newProgress = _progress.Progress;
-            foreach (var progressWriters in GameFactory.ProgressWritersAndReaders)
-                progressWriters.UpdateProgress(to: ref newProgress);
             
+            UpdateProgressForCleanable(ref newProgress);
+            UpdateProgressForUnCleanable(ref newProgress);
+
             PlayerPrefs.SetString(ProgressKey, newProgress.ToJson());
+        }
+
+        private void UpdateProgressForCleanable(ref PlayerProgress newProgress)
+        {
+            foreach (var progressWriters in _progressWatchersContainer.CleanableProgressWriters)
+                progressWriters.UpdateProgress(to: ref newProgress);
+        }
+
+        private void UpdateProgressForUnCleanable(ref PlayerProgress newProgress)
+        {
+            foreach (var progressWriters in _progressWatchersContainer.UnCleanableProgressWriters)
+                progressWriters.UpdateProgress(to: ref newProgress);
         }
 
         public PlayerProgress LoadProgress() =>

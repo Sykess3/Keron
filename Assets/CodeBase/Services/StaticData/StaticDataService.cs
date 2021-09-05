@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.StaticData;
 using CodeBase.UI.Services.Windows;

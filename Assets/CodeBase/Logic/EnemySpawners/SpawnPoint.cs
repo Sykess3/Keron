@@ -1,27 +1,29 @@
-﻿using System.Threading.Tasks;
-using CodeBase.CustomAttributes;
+﻿using CodeBase.CustomAttributes;
 using CodeBase.Data;
 using CodeBase.Enemy;
 using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.StaticData;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.EnemySpawners
 {
-    public class SpawnPoint : MonoBehaviour, ISavedProgress
+    public class SpawnPoint : MonoBehaviour, ISavedProgressCleanable
     {
         [ReadOnly] private MonsterTypeId _monsterTypeId;
         private bool _slain;
         private IGameFactory _factory;
         private EnemyDeath _enemyDeath;
 
-        private string _id { get; set; }
-
-
-        public void Construct(IGameFactory factory, MonsterTypeId monsterTypeId, string uniqueId)
-        {
+        private string _id;
+        
+        [Inject]
+        private void Construct(IGameFactory factory) => 
             _factory = factory;
+
+        public void Configure(MonsterTypeId monsterTypeId, string uniqueId)
+        {
             _monsterTypeId = monsterTypeId;
             _id = uniqueId;
         }
@@ -36,7 +38,7 @@ namespace CodeBase.Logic.EnemySpawners
 
         public void UpdateProgress(ref PlayerProgress to)
         {
-            if (_slain) 
+            if (_slain && !to.KillData.ClearedSpawners.Contains(_id))
                 to.KillData.ClearedSpawners.Add(_id);
         }
 

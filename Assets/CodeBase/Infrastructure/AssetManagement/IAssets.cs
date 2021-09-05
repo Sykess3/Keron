@@ -6,11 +6,8 @@ using UnityEngine.AddressableAssets;
 
 namespace CodeBase.Infrastructure.AssetManagement
 {
-    public interface IAssets : IService
+    public interface IAssets 
     {
-        Task<GameObject> Instantiate(string path, Vector3 at);
-        Task<GameObject> Instantiate(string path);
-        Task<GameObject> Instantiate(string shopItemPath, Transform parent);
 
         Task<T> LoadSingle<T>(AssetReferenceGameObject assetReference) where T : class;
         void CleanUp();
@@ -19,6 +16,9 @@ namespace CodeBase.Infrastructure.AssetManagement
         Task<IList<T>> LoadCollection<T>(string assetAddress) where T : class;
         Task<T> LoadSingleForEntireLiceCycle<T>(string assetAddress) where T : class;
         Task<IList<T>> LoadCollectionForEntireLiceCycle<T>(string assetAddress) where T : class;
-        
+
+        Task<GameObject> Instantiate(string address, Transform under);
+        Task<GameObject> Instantiate(string address, Vector3 at);
+        Task<GameObject> Instantiate(string address);
     }
 }

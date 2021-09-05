@@ -23,12 +23,6 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 9c55f58a0ccd23741857d605e6a7955e
-    m_Address: TEST_
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: 9c55f58a0ccd23741857d605e6a7955e, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: 9c55f58a0ccd23741857d605e6a7955e, type: 3}
   - m_GUID: 114d9f5ea8ed2eb48a0c7b4f6b7655a0
     m_Address: Dungeon
     m_ReadOnly: 0
@@ -37,12 +31,6 @@ MonoBehaviour:
     m_TargetAsset: {fileID: 0}
   - m_GUID: 24e785ae901a54e469db38c1eee1f82f
     m_Address: DungeonSettings
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: 949b933a1f5ebc74c86fb6038b05fbe9
-    m_Address: TEST
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

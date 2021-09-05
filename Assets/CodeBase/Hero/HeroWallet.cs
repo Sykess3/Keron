@@ -1,11 +1,10 @@
-﻿using System;
-using CodeBase.Data;
+﻿using CodeBase.Data;
 using CodeBase.Infrastructure;
 using UnityEngine;
 
 namespace CodeBase.Hero
 {
-    public class HeroWallet : MonoBehaviour, ISavedProgress
+    public class HeroWallet : MonoBehaviour, ISavedProgressCleanable
     {
         private Money _money;
         

@@ -1,6 +1,4 @@
 ﻿using System;
-using TMPro;
-using UnityEngine.AddressableAssets;
 using UnityEngine.Purchasing;
 
 namespace CodeBase.Infrastructure.Services.IAP

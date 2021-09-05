@@ -1,5 +1,6 @@
 ﻿using CodeBase.Infrastructure.Services.SaveLoad;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.SaveLoad
 {
@@ -10,7 +11,8 @@ namespace CodeBase.Logic.SaveLoad
         private ISaveLoadService _saveLoadService;
         private bool _triggered;
 
-        public void Construct(ISaveLoadService saveLoadService) =>
+        [Inject]
+        private void Construct(ISaveLoadService saveLoadService) =>
             _saveLoadService = saveLoadService;
 
         private void OnTriggerEnter(Collider other)

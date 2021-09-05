@@ -1,6 +1,4 @@
-﻿using UnityEngine.ResourceManagement.ResourceLocations;
-
-namespace CodeBase.Infrastructure.AssetManagement
+﻿namespace CodeBase.Infrastructure.AssetManagement
 {
     public static class AssetAddress
     {
